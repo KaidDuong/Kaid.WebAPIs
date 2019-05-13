@@ -48,6 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IResponsitory.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RespositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="KaidDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +67,13 @@
       <Project>{d63e2c27-b4ac-4d00-bbc0-9b15c63ac80b}</Project>
       <Name>Kaid.WebAPI.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kaid.WebAPI.Model\Kaid.WebAPI.Model.csproj">
+      <Project>{36ff2624-b520-4efd-9404-6184ad554082}</Project>
+      <Name>Kaid.WebAPI.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Responsitories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
