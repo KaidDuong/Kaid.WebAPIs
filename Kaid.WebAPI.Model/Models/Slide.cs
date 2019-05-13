@@ -26,7 +26,7 @@ namespace Kaid.WebAPI.Model.Models
         [MaxLength(256)]
         public string Image { get; set; }
         public string Description { get; set; }
-        [MaxLength(256)
+        [MaxLength(256)]
         public string URL { set; get; }
         public int? DisplayOrder { set; get; }
         public bool Status { set; get; }
