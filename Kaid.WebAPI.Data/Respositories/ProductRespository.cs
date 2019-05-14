@@ -13,7 +13,7 @@ namespace Kaid.WebAPI.Data.Respositories
 
     }
     public class ProductRespository
-         : RespositoryBase<ProductCategoryRespository>, IProductRespository
+         : RespositoryBase<Product>, IProductRespository
     {
         
         public ProductRespository (DbFactory dbFactory)

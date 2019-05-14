@@ -25,7 +25,7 @@ namespace Kaid.WebAPI.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual  ProductCategory ProductCategory { set; get; }
-       // public virtual IEnumerable<ProductTag> ProductTags { set; get; }
+        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
 
 
     }

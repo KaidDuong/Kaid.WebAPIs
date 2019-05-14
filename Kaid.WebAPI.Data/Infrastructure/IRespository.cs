@@ -14,6 +14,7 @@ namespace Kaid.WebAPI.Data.Infrastructure
 
         //Marks an entity to be removed
         void Delete(T entity);
+        void Delete(int entity);
 
         //Delete multi-records
         void DeleteMulti(Expression<Func<T, bool>> where);
