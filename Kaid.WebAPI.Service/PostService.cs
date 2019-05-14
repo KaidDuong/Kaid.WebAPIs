@@ -18,6 +18,7 @@ namespace Kaid.WebAPI.Service
         IEnumerable<Post> GetAll();
 
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
+        IEnumerable<Post> GetAllByCategoryPaging(int categoryId,int page, int pageSize, out int totalRow);
 
         Post GetById(int id);
 
@@ -57,11 +58,18 @@ namespace Kaid.WebAPI.Service
             return this._postRespository.GetAll(new string[] { "PostCategory" });
         }
 
+        public IEnumerable<Post> GetAllByCategoryPaging(int categoryId,int page, int pageSize, out int totalRow)
+        {
+            return _postRespository.GetMultiPaging(k
+                => k.Status && k.CategoryID == 
+                categoryId, out totalRow, page, 
+                pageSize , new string[] { "PostCategory"});
+        }
+
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
             //TODO: SELECT all posts by tag
-            return _postRespository.GetMultiPaging
-                (x => x.Status, out totalRow, page, pageSize);
+            return _postRespository.GetAllByTag(tag,page,pageSize,out totalRow);
         }
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
