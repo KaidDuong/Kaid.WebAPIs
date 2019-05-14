@@ -1,34 +1,38 @@
 ﻿using Kaid.WebAPI.Data.Infrastructure;
 using Kaid.WebAPI.Data.Respositories;
 using Kaid.WebAPI.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kaid.WebAPI.Service
 {
     public interface IPostCategoryService
     {
         void Add(PostCategory postCategory);
+
         void Update(PostCategory postCategory);
-      
+
         void Delete(int id);
+
         IEnumerable<PostCategory> GetAll();
+
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
+
         PostCategory GetById(int id);
+
         void SaveChanges();
     }
+
     public class PostCategoryService : IPostCategoryService
     {
         private IPostCategoryRespository _postCategoryRespository;
         private IUnitOfWork _unitOfWork;
-        public PostCategoryService( PostCategoryRespository postCategoryRespository, UnitOfWork unitOfWork)
+
+        public PostCategoryService(PostCategoryRespository postCategoryRespository, UnitOfWork unitOfWork)
         {
             this._postCategoryRespository = postCategoryRespository;
-            this._unitOfWork = unitOfWork ;
+            this._unitOfWork = unitOfWork;
         }
+
         public void Add(PostCategory postCategory)
         {
             _postCategoryRespository.Add(postCategory);
