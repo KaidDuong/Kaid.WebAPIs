@@ -8,6 +8,7 @@ namespace Kaid.WebAPI.Model.Abstract
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       
         public int ID { get; set; }
 
         [MaxLength(256)]

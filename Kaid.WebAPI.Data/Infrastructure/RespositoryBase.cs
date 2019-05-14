@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Kaid.WebAPI.Data.Infrastructure
 {
-    public abstract class RespositoryBase<T> where T : class
+    public abstract class RespositoryBase<T> :IRespository<T> where T : class
     {
         #region Properties
 
