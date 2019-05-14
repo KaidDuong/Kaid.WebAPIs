@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface ISupportOnlineRespository { }
+    public interface ISupportOnlineRespository : IRespository<SupportOnline> { }
 
     public class SupportOnlineRespository : RespositoryBase<SupportOnline>, ISupportOnlineRespository
     {

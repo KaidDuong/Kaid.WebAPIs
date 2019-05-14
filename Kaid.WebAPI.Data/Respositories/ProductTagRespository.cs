@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IProductTagRespository
+    public interface IProductTagRespository : IRespository<ProductTag>
     {
     }
 

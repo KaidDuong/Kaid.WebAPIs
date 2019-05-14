@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IFooterRespository
+    public interface IFooterRespository:IRespository<Footer>
     {
     }
 

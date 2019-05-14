@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IPostRespository { }
+    public interface IPostRespository : IRespository<Post> { }
 
     public class PostRespository : RespositoryBase<Post>, IPostRespository
     {

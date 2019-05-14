@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface ISlideRespository { }
+    public interface ISlideRespository : IRespository<Slide> { }
 
     public class SlideRespository : RespositoryBase<Slide>, ISlideRespository
     {

@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface ISystemConfig { }
+    public interface ISystemConfig : IRespository<SystemConfig> { }
 
     public class SystemConfigRespository : RespositoryBase<SystemConfig>, ISystemConfig
     {

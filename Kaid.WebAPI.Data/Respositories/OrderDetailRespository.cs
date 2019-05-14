@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IOrderDetailRespository
+    public interface IOrderDetailRespository : IRespository<OrderDetail>
     {
     }
 

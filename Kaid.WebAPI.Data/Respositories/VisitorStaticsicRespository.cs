@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IVisitorStaticsic { }
+    public interface IVisitorStaticsic : IRespository<VisitorStatisic> { }
 
     public class VisitorStaticsicRespository : RespositoryBase<VisitorStatisic>, IVisitorStaticsic
     {

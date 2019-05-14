@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IProductRespository
+    public interface IProductRespository : IRespository<Product>
     {
 
     }

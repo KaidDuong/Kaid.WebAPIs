@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Kaid.WebAPI.Data.Respositories
 {
-    public interface IProductCategoryRespository
+    public interface IProductCategoryRespository : IRespository<ProductCategory>
     {
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
