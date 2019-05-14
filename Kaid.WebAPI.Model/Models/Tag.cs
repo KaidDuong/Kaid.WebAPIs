@@ -17,7 +17,8 @@ namespace Kaid.WebAPI.Model.Models
 
         [MaxLength(50)]
         public string Type { set; get; }
+
         //public virtual IEnumerable<PostTag> PostTags { set; get; }
-       // public virtual IEnumerable<ProductTag> ProductTags { set; get; }
+        //public virtual IEnumerable<ProductTag> ProductTags { set; get; }
      }
 }

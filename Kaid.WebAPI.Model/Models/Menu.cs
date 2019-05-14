@@ -21,13 +21,14 @@ namespace Kaid.WebAPI.Model.Models
         public int? DisplayOrder { set; get; }
 
         [Required]
-        [ForeignKey("GroupId")]
         public int GroupID { set; get; }
-
-        public virtual MenuGroup MenuGroup { set; get; }
+       
         public string Target { set; get; }
 
         [Required]
         public bool Status { set; get; }
+
+        [ForeignKey("GroupID")]
+        public virtual MenuGroup MenuGroup { set; get; }
     }
 }

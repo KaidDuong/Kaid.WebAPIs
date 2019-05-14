@@ -8,15 +8,17 @@ namespace Kaid.WebAPI.Model.Models
     public class PostTag
     {
         [Key]
-        [Column(TypeName ="varchar")]
+        [Column(Order=1,TypeName="varchar")]
         [MaxLength(50)]
         public string TagID { set; get; }
        
         [Key]
+        [Column(Order=2)]
         public int PostID { set; get; }
+
         [ForeignKey("TagID")]
-       
         public virtual Tag Tag { set; get; }
+
         [ForeignKey("PostID")]
         public virtual Post Post { set; get; }
     }
