@@ -11,6 +11,7 @@ namespace Kaid.WebAPI.Data.Respositories
     {
         public OrderDetailRespository(DbFactory dbFactory) : base(dbFactory)
         {
+           
         }
     }
 }

@@ -75,7 +75,10 @@
     <Compile Include="Respositories\ProductRespository.cs" />
     <Compile Include="Respositories\ProductTagRespository.cs" />
     <Compile Include="Respositories\SlideRespository.cs" />
+    <Compile Include="Respositories\SupportOnlineRespository.cs" />
+    <Compile Include="Respositories\SystemConfigRespository.cs" />
     <Compile Include="Respositories\TagRespository.cs" />
+    <Compile Include="Respositories\VisitorStaticsicRespository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
