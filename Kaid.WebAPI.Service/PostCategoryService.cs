@@ -7,11 +7,11 @@ namespace Kaid.WebAPI.Service
 {
     public interface IPostCategoryService
     {
-        void Add(PostCategory postCategory);
+        PostCategory Add(PostCategory postCategory);
 
         void Update(PostCategory postCategory);
 
-        void Delete(int id);
+        PostCategory Delete(int id);
 
         IEnumerable<PostCategory> GetAll();
 
@@ -27,20 +27,20 @@ namespace Kaid.WebAPI.Service
         private IPostCategoryRespository _postCategoryRespository;
         private IUnitOfWork _unitOfWork;
 
-        public PostCategoryService(PostCategoryRespository postCategoryRespository, UnitOfWork unitOfWork)
+        public PostCategoryService(IPostCategoryRespository postCategoryRespository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRespository = postCategoryRespository;
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(PostCategory postCategory)
+        public PostCategory Add(PostCategory postCategory)
         {
-            _postCategoryRespository.Add(postCategory);
+           return _postCategoryRespository.Add(postCategory);
         }
 
-        public void Delete(int id)
+        public PostCategory Delete(int id)
         {
-            _postCategoryRespository.Delete(id);
+        return    _postCategoryRespository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()

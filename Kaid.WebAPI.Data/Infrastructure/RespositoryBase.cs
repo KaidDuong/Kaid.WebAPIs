@@ -37,9 +37,9 @@ namespace Kaid.WebAPI.Data.Infrastructure
 
         #region Implementation
 
-        public virtual void Add(T entity)
+        public virtual T Add(T entity)
         {
-            dbSet.Add(entity);
+          return  dbSet.Add(entity);
         }
 
         public virtual void Update(T entity)
@@ -48,9 +48,9 @@ namespace Kaid.WebAPI.Data.Infrastructure
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
+        public virtual T Delete(T entity)
         {
-            dbSet.Remove(entity);
+           return dbSet.Remove(entity);
         }
 
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
@@ -70,7 +70,17 @@ namespace Kaid.WebAPI.Data.Infrastructure
         public T GetSingleByCondition(
             Expression<Func<T, bool>> expression, string[] includes = null)
         {
-            return GetAll(includes).FirstOrDefault(expression);
+            //handle includes for associated objects if applicable
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                {
+                    query = query.Include(include);
+                }
+                return query.FirstOrDefault<T>(expression);
+            }
+            return dataContext.Set<T>().FirstOrDefault<T>(expression);
         }
 
         public virtual IEnumerable<T> GetMany(
@@ -79,7 +89,7 @@ namespace Kaid.WebAPI.Data.Infrastructure
             return dbSet.Where(where).ToList();
         }
 
-        public IQueryable<T> GetAll(string[] includes = null)
+        public IEnumerable<T> GetAll(string[] includes = null)
         {
             //handle includes for associated objects if applicable
             if (includes != null && includes.Count() > 0)
@@ -89,12 +99,12 @@ namespace Kaid.WebAPI.Data.Infrastructure
                 {
                     query = query.Include(include);
                 }
-                return query.AsQueryable();
+                return query.AsEnumerable();
             }
-            return dataContext.Set<T>().AsQueryable();
+            return dataContext.Set<T>().AsEnumerable();
         }
 
-        public virtual IQueryable<T> GetMulti(
+        public virtual IEnumerable<T> GetMulti(
             Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //handle includes for associated objects if applicable
@@ -105,17 +115,17 @@ namespace Kaid.WebAPI.Data.Infrastructure
                 {
                     query = query.Include(include);
                 }
-                return query.Where<T>(predicate).AsQueryable<T>();
+                return query.Where<T>(predicate).AsEnumerable<T>();
             }
-            return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
+            return dataContext.Set<T>().Where<T>(predicate).AsEnumerable<T>();
         }
 
-        public virtual IQueryable<T> GetMultiPaging(
+        public virtual IEnumerable<T> GetMultiPaging(
             Expression<Func<T, bool>> predicate, out int total,
             int index = 0, int size = 50, string[] includes = null)
         {
             int skipCount = index * size;
-            IQueryable<T> _resetSet;
+            IEnumerable<T> _resetSet;
 
             //handle includes for associated objects if applicable
             if (includes != null && includes.Count() > 0)
@@ -126,19 +136,19 @@ namespace Kaid.WebAPI.Data.Infrastructure
                     query = query.Include(include);
                 }
                 _resetSet = (predicate != null) ?
-                    query.Where<T>(predicate).AsQueryable<T>()
-                    : query.AsQueryable<T>();
+                    query.Where<T>(predicate).AsEnumerable<T>()
+                    : query.AsEnumerable<T>();
             }
             else
             {
                 _resetSet = predicate != null ?
-                    dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>()
-                    : dataContext.Set<T>().AsQueryable<T>();
+                    dataContext.Set<T>().Where<T>(predicate).AsEnumerable<T>()
+                    : dataContext.Set<T>().AsEnumerable<T>();
             }
             _resetSet = skipCount == 0 ? _resetSet.Take(size)
                                        : _resetSet.Skip(skipCount).Take(size);
             total = _resetSet.Count();
-            return _resetSet.AsQueryable();
+            return _resetSet.AsEnumerable();
         }
 
         public virtual int Count(Expression<Func<T, bool>> where)
@@ -151,10 +161,10 @@ namespace Kaid.WebAPI.Data.Infrastructure
             return dataContext.Set<T>().Count<T>(predicate) > 0;
         }
 
-        public void Delete(int id)
+        public T Delete(int id)
         {
             var entity = dbSet.Find(id);
-            dbSet.Remove(entity);
+           return dbSet.Remove(entity);
         }
 
         #endregion Implementation
