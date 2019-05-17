@@ -1,5 +1,5 @@
 ﻿using Kaid.WebAPI.Data.Infrastructure;
-using Kaid.WebAPI.Data.Respositories;
+using Kaid.WebAPI.Data.Repositories;
 using Kaid.WebAPI.Model.Models;
 using Kaid.WebAPI.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -51,9 +51,9 @@
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
-    <Compile Include="Infrastructure\IRespository.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Infrastructure\RespositoryBase.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="KaidDbContext.cs" />
     <Compile Include="Migrations\201905160048428_AddErrorTable.cs" />
@@ -62,24 +62,24 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Respositories\ErrorRespository.cs" />
-    <Compile Include="Respositories\FooterRespository.cs" />
-    <Compile Include="Respositories\MenuGroupRespository.cs" />
-    <Compile Include="Respositories\MenuRespository.cs" />
-    <Compile Include="Respositories\OrderDetailRespository.cs" />
-    <Compile Include="Respositories\OrderRespository.cs" />
-    <Compile Include="Respositories\PageRespository.cs" />
-    <Compile Include="Respositories\PostCategoryRespository.cs" />
-    <Compile Include="Respositories\PostRespository.cs" />
-    <Compile Include="Respositories\PostTagRespository.cs" />
-    <Compile Include="Respositories\ProductCategoryRespository.cs" />
-    <Compile Include="Respositories\ProductRespository.cs" />
-    <Compile Include="Respositories\ProductTagRespository.cs" />
-    <Compile Include="Respositories\SlideRespository.cs" />
-    <Compile Include="Respositories\SupportOnlineRespository.cs" />
-    <Compile Include="Respositories\SystemConfigRespository.cs" />
-    <Compile Include="Respositories\TagRespository.cs" />
-    <Compile Include="Respositories\VisitorStaticsicRespository.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FooterRepository.cs" />
+    <Compile Include="Repositories\MenuGroupRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\OrderDetailRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\PostCategoryRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\PostTagRepository.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductTagRepository.cs" />
+    <Compile Include="Repositories\SlideRepository.cs" />
+    <Compile Include="Repositories\SupportOnlineRepository.cs" />
+    <Compile Include="Repositories\SystemConfigRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\VisitorStaticsicRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

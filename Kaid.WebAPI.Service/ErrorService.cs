@@ -1,5 +1,5 @@
 ﻿using Kaid.WebAPI.Data.Infrastructure;
-using Kaid.WebAPI.Data.Respositories;
+using Kaid.WebAPI.Data.Repositories;
 using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Service
@@ -13,19 +13,19 @@ namespace Kaid.WebAPI.Service
 
     public class ErrorService : IErrorService
     {
-        private IErrorRespository _errorResposiory;
+        private IErrorRepository _errorReposiory;
         private IUnitOfWork _unitOfWork;
 
-        public ErrorService(IErrorRespository errorRespository,
+        public ErrorService(IErrorRepository errorRepository,
             IUnitOfWork unitOfWork)
         {
-            _errorResposiory = errorRespository;
+            _errorReposiory = errorRepository;
             _unitOfWork = unitOfWork;
         }
 
         public Error Create(Error error)
         {
-            return _errorResposiory.Add(error);
+            return _errorReposiory.Add(error);
         }
 
         public void Save()

@@ -1,5 +1,5 @@
 ﻿using Kaid.WebAPI.Data.Infrastructure;
-using Kaid.WebAPI.Data.Respositories;
+using Kaid.WebAPI.Data.Repositories;
 using Kaid.WebAPI.Model.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Kaid.WebAPI.UnitTest.RespositoryTest
         public void Initialize()
         {
             _dbFactory = new DbFactory();
-            _objRespository = new PostCategoryRespository(_dbFactory as DbFactory);
+            _objRespository = new PostCategoryRepository(_dbFactory as DbFactory);
             _unitOfWork = new UnitOfWork(_dbFactory);
         }
 

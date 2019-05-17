@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kaid.WebAPI.Data.Respositories
+namespace Kaid.WebAPI.Data.Repositories
 {
-    public interface IProductRespository : IRespository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
 
     }
-    public class ProductRespository
-         : RespositoryBase<Product>, IProductRespository
+    public class ProductRepository
+         : RepositoryBase<Product>, IProductRepository
     {
         
-        public ProductRespository (DbFactory dbFactory)
+        public ProductRepository (IDbFactory dbFactory)
             : base(dbFactory) { }
     }
 }

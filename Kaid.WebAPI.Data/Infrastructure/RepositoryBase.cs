@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Kaid.WebAPI.Data.Infrastructure
 {
-    public abstract class RespositoryBase<T> :IRespository<T> where T : class
+    public abstract class RepositoryBase<T> :IRepository<T> where T : class
     {
         #region Properties
 
@@ -29,7 +29,7 @@ namespace Kaid.WebAPI.Data.Infrastructure
 
         #endregion Properties
 
-        protected RespositoryBase(IDbFactory dbFactory)
+        protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
             dbSet = DbContext.Set<T>();

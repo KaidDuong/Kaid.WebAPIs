@@ -3,16 +3,16 @@ using Kaid.WebAPI.Model.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Kaid.WebAPI.Data.Respositories
+namespace Kaid.WebAPI.Data.Repositories
 {
-    public interface IProductCategoryRespository : IRespository<ProductCategory>
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
-    public class ProductCategoryRespository : RespositoryBase<ProductCategory>,IProductCategoryRespository
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>,IProductCategoryRepository
     {
         
-        public ProductCategoryRespository(DbFactory dbFactory)
+        public ProductCategoryRepository(IDbFactory dbFactory)
             : base(dbFactory) { }
 
         public IEnumerable<ProductCategory> GetByAlias(string alias)

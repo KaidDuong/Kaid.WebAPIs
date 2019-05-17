@@ -1,5 +1,5 @@
 ﻿using Kaid.WebAPI.Data.Infrastructure;
-using Kaid.WebAPI.Data.Respositories;
+using Kaid.WebAPI.Data.Repositories;
 using Kaid.WebAPI.Model.Models;
 using System.Collections.Generic;
 
@@ -24,38 +24,38 @@ namespace Kaid.WebAPI.Service
 
     public class PostCategoryService : IPostCategoryService
     {
-        private IPostCategoryRespository _postCategoryRespository;
+        private IPostCategoryRepository _postCategoryRepository;
         private IUnitOfWork _unitOfWork;
 
-        public PostCategoryService(IPostCategoryRespository postCategoryRespository, IUnitOfWork unitOfWork)
+        public PostCategoryService(IPostCategoryRepository postCategoryRespository, IUnitOfWork unitOfWork)
         {
-            this._postCategoryRespository = postCategoryRespository;
+            this._postCategoryRepository = postCategoryRespository;
             this._unitOfWork = unitOfWork;
         }
 
         public PostCategory Add(PostCategory postCategory)
         {
-           return _postCategoryRespository.Add(postCategory);
+           return _postCategoryRepository.Add(postCategory);
         }
 
         public PostCategory Delete(int id)
         {
-        return    _postCategoryRespository.Delete(id);
+        return    _postCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()
         {
-            return _postCategoryRespository.GetAll();
+            return _postCategoryRepository.GetAll();
         }
 
         public IEnumerable<PostCategory> GetAllByParentId(int parentId)
         {
-            return _postCategoryRespository.GetMulti(k => k.Status && k.ParentID == parentId);
+            return _postCategoryRepository.GetMulti(k => k.Status && k.ParentID == parentId);
         }
 
         public PostCategory GetById(int id)
         {
-            return _postCategoryRespository.GetSingleById(id);
+            return _postCategoryRepository.GetSingleById(id);
         }
 
         public void SaveChanges()
@@ -65,7 +65,7 @@ namespace Kaid.WebAPI.Service
 
         public void Update(PostCategory postCategory)
         {
-            _postCategoryRespository.Update(postCategory);
+            _postCategoryRepository.Update(postCategory);
         }
     }
 }

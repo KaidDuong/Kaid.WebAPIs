@@ -23,19 +23,9 @@ namespace Kaid.WebAPI.Web.Api
         {
             return CreateHttpResponse(requestMessage, () =>
             {
-                HttpResponseMessage responseMessage = null;
-                if (ModelState.IsValid)
-                {
-                    requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var categorys = _postCategoryService.GetAll();
-                    
+                var categorys = _postCategoryService.GetAll();
 
-                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, categorys);
-                }
-                return responseMessage;
+                return requestMessage.CreateResponse(HttpStatusCode.OK, categorys);
             });
         }
         public HttpResponseMessage Post
@@ -73,7 +63,7 @@ namespace Kaid.WebAPI.Web.Api
                     _postCategoryService.Update(postCategory);
                     _postCategoryService.SaveChanges();
 
-                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK,);
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK);
                 }
                 return responseMessage;
             });
