@@ -41,7 +41,7 @@ namespace Kaid.WebAPI.Web.App_Start
 
             //Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
-                .Where(k => k.Name.EndsWith("Respository"))
+                .Where(k => k.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
             //Services

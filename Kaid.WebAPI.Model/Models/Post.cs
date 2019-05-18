@@ -11,6 +11,8 @@ namespace Kaid.WebAPI.Model.Models
         public int? DisplayOrder { set; get; }
         public int CategoryID { set; get; }
 
+        public string Content { set; get; }
+        public int? ViewCount { set; get; }
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { set; get; }
        public virtual  IEnumerable <PostTag> PostTags { set; get; }

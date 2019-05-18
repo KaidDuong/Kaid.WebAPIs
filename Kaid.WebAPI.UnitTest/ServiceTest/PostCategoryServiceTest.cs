@@ -15,7 +15,7 @@ namespace Kaid.WebAPI.UnitTest.ServiceTest
     [TestClass]
   public class PostCategoryServiceTest
     {
-        private Mock<IPostCategoryRespository> _mockRespository;
+        private Mock<IPostCategoryRepository> _mockRepository;
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private IPostCategoryService _categoryService;
         private List<PostCategory> _postCategories;
@@ -23,9 +23,9 @@ namespace Kaid.WebAPI.UnitTest.ServiceTest
         [TestInitialize]
         public void Intialize( )
         {
-            _mockRespository = new Mock<IPostCategoryRespository>();
+            _mockRepository = new Mock<IPostCategoryRepository>();
             _mockUnitOfWork = new Mock<IUnitOfWork>();
-            _categoryService = new PostCategoryService(_mockRespository.Object, _mockUnitOfWork.Object);
+            _categoryService = new PostCategoryService(_mockRepository.Object, _mockUnitOfWork.Object);
             _postCategories = new List<PostCategory>()
             {
                 new PostCategory(){ID=1, Name="DM1", Status=true},
@@ -43,7 +43,7 @@ namespace Kaid.WebAPI.UnitTest.ServiceTest
                 Alias = "test",
                 Status = true,
             };
-            _mockRespository.Setup(k=>k.Add(postCategory))
+            _mockRepository.Setup(k=>k.Add(postCategory))
                 .Returns((PostCategory p)=>{
                     p.ID = 1;
                     return p;
@@ -57,7 +57,7 @@ namespace Kaid.WebAPI.UnitTest.ServiceTest
         {
 
             //SETUP METHOD
-            _mockRespository.Setup(k => k.GetAll(null)).Returns(_postCategories);
+            _mockRepository.Setup(k => k.GetAll(null)).Returns(_postCategories);
 
             //call action
             var result = _categoryService.GetAll() as List<PostCategory>;

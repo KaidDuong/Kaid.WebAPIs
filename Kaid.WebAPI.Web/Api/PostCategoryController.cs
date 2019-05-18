@@ -1,6 +1,9 @@
-﻿using Kaid.WebAPI.Model.Models;
+﻿using AutoMapper;
+using Kaid.WebAPI.Model.Models;
 using Kaid.WebAPI.Service;
 using Kaid.WebAPI.Web.Infrastructure.Core;
+using Kaid.WebAPI.Web.Infrastructure.Extentions;
+using Kaid.WebAPI.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -11,12 +14,14 @@ namespace Kaid.WebAPI.Web.Api
     [RoutePrefix("api/postCategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryService _postCategoryService;
+        private IPostCategoryService _postCategoryService;
+
         public PostCategoryController(IErrorService errorService,
             IPostCategoryService postCategoryService) : base(errorService)
         {
             this._postCategoryService = postCategoryService;
         }
+
         [Route("getall")]
         public HttpResponseMessage Get
             (HttpRequestMessage requestMessage)
@@ -24,12 +29,14 @@ namespace Kaid.WebAPI.Web.Api
             return CreateHttpResponse(requestMessage, () =>
             {
                 var categorys = _postCategoryService.GetAll();
+                var postCategoryViewModels = Mapper.Map<List<PostCategoryViewModel>>(categorys);
 
-                return requestMessage.CreateResponse(HttpStatusCode.OK, categorys);
+                return requestMessage.CreateResponse(HttpStatusCode.OK, postCategoryViewModels);
             });
         }
+        [Route("add")]
         public HttpResponseMessage Post
-            (HttpRequestMessage requestMessage  ,PostCategory postCategory)
+            (HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
@@ -40,7 +47,10 @@ namespace Kaid.WebAPI.Web.Api
                 }
                 else
                 {
-                   var category= _postCategoryService.Add(postCategory);
+                    var postCategory = new PostCategory();
+                    postCategory.UpdatePostCategory(postCategoryVm);
+
+                    var category = _postCategoryService.Add(postCategory);
                     _postCategoryService.SaveChanges();
 
                     responseMessage = requestMessage.CreateResponse(HttpStatusCode.Created, category);
@@ -48,8 +58,10 @@ namespace Kaid.WebAPI.Web.Api
                 return responseMessage;
             });
         }
+
+        [Route("update")]
         public HttpResponseMessage Put
-           (HttpRequestMessage requestMessage, PostCategory postCategory)
+           (HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
@@ -60,6 +72,9 @@ namespace Kaid.WebAPI.Web.Api
                 }
                 else
                 {
+                    var postCategory = _postCategoryService.GetById(postCategoryVm.ID);
+                    postCategory.UpdatePostCategory(postCategoryVm);
+
                     _postCategoryService.Update(postCategory);
                     _postCategoryService.SaveChanges();
 
@@ -68,8 +83,9 @@ namespace Kaid.WebAPI.Web.Api
                 return responseMessage;
             });
         }
+
         public HttpResponseMessage Delete
-           (HttpRequestMessage requestMessage, PostCategory postCategory)
+           (HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
@@ -80,10 +96,12 @@ namespace Kaid.WebAPI.Web.Api
                 }
                 else
                 {
-                    var category = _postCategoryService.Delete(postCategory.ID);
+                    
+                    var category = _postCategoryService.Delete(postCategoryVm.ID);
                     _postCategoryService.SaveChanges();
 
-                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, category);
+                    var postCategoryViewModel = Mapper.Map<PostCategoryViewModel>(category);
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, postCategoryViewModel);
                 }
                 return responseMessage;
             });
