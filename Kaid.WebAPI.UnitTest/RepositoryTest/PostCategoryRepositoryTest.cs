@@ -7,29 +7,29 @@ using System.Linq;
 namespace Kaid.WebAPI.UnitTest.RespositoryTest
 {
     [TestClass]
-    public class PostCategoryRespositoryTest
+    public class PostCategoryRepositoryTest
     {
         private IDbFactory _dbFactory;
-        private IPostCategoryRespository _objRespository;
+        private IPostCategoryRepository _objRepository;
         private IUnitOfWork _unitOfWork;
 
         [TestInitialize]
         public void Initialize()
         {
             _dbFactory = new DbFactory();
-            _objRespository = new PostCategoryRepository(_dbFactory as DbFactory);
+            _objRepository = new PostCategoryRepository(_dbFactory as DbFactory);
             _unitOfWork = new UnitOfWork(_dbFactory);
         }
 
         [TestMethod]
         public void PostCategory_Repository_GetAll()
         {
-            var list = _objRespository.GetAll().ToList();
+            var list = _objRepository.GetAll().ToList();
             Assert.AreEqual(6, list.Count);
         }
 
         [TestMethod]
-        public void PostCategory_Respository_Create()
+        public void PostCategory_Repository_Create()
         {
             PostCategory category = new PostCategory
             {
@@ -37,7 +37,7 @@ namespace Kaid.WebAPI.UnitTest.RespositoryTest
                 Alias = "Test-category",
                 Status = true
             };
-            var result = _objRespository.Add(category);
+            var result = _objRepository.Add(category);
             _unitOfWork.Commit();
 
             Assert.IsNotNull(result);
