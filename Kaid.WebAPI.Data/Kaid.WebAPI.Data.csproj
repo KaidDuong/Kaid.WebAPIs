@@ -37,6 +37,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0-preview5-19254-05\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -64,6 +70,14 @@
     <Compile Include="Migrations\201905181954068_updateTagsAndPostsTables.Designer.cs">
       <DependentUpon>201905181954068_updateTagsAndPostsTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905182240437_Intergrate-AspnetIdentity.cs" />
+    <Compile Include="Migrations\201905182240437_Intergrate-AspnetIdentity.Designer.cs">
+      <DependentUpon>201905182240437_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905190809303_change_key_for_IdentityUserRoles.cs" />
+    <Compile Include="Migrations\201905190809303_change_key_for_IdentityUserRoles.Designer.cs">
+      <DependentUpon>201905190809303_change_key_for_IdentityUserRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -87,7 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kaid.WebAPI.Common\Kaid.WebAPI.Common.csproj">
@@ -105,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905181954068_updateTagsAndPostsTables.resx">
       <DependentUpon>201905181954068_updateTagsAndPostsTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905182240437_Intergrate-AspnetIdentity.resx">
+      <DependentUpon>201905182240437_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905190809303_change_key_for_IdentityUserRoles.resx">
+      <DependentUpon>201905190809303_change_key_for_IdentityUserRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

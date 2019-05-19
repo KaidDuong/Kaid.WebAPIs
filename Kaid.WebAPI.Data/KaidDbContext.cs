@@ -1,9 +1,10 @@
 ﻿using Kaid.WebAPI.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace Kaid.WebAPI.Data
 {
-    public class KaidDbContext : DbContext
+    public class KaidDbContext : IdentityDbContext<ApplicationUser>
     {
         public KaidDbContext() : base("KaidConnection")
         {
@@ -30,9 +31,17 @@ namespace Kaid.WebAPI.Data
         public DbSet<Tag> Tags { set; get; }
         public DbSet<VisitorStatisic> VisitorStatisics { set; get; }
         public DbSet<Error> Errors { get; set; }
+        
 
+        public static KaidDbContext Create()
+        {
+            return new KaidDbContext();
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>().HasKey(k => new {k.UserId , k.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(k => k.UserId);
+          
         }
     }
 }
