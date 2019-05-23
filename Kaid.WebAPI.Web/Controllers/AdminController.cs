@@ -13,5 +13,6 @@ namespace Kaid.WebAPI.Web.Controllers
         {
             return View();
         }
+        
     }
 }
