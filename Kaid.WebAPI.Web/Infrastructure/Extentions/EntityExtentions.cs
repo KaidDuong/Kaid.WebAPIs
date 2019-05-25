@@ -1,5 +1,5 @@
 ﻿using Kaid.WebAPI.Model.Models;
-using Kaid.WebAPI.Web.Models;
+using Kaid.WebAPI.Web.Models.ViewModels;
 
 namespace Kaid.WebAPI.Web.Infrastructure.Extentions
 {

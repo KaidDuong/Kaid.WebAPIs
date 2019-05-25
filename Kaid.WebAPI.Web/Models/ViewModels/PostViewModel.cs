@@ -1,7 +1,7 @@
 ﻿using Kaid.WebAPI.Web.Models.Abstract;
 using System.Collections.Generic;
 
-namespace Kaid.WebAPI.Web.Models
+namespace Kaid.WebAPI.Web.Models.ViewModels
 {
     public class PostViewModel : Auditable
     {

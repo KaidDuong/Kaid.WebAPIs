@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('kaid.products',
-                    ['kaid.common'])
+                   ['kaid.common'])
                                     .config(config);
 
     config.$inject = ['$stateProvider',

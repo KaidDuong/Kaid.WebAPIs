@@ -3,7 +3,7 @@ using Kaid.WebAPI.Model.Models;
 using Kaid.WebAPI.Service;
 using Kaid.WebAPI.Web.Infrastructure.Core;
 using Kaid.WebAPI.Web.Infrastructure.Extentions;
-using Kaid.WebAPI.Web.Models;
+using Kaid.WebAPI.Web.Models.ViewModels;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;

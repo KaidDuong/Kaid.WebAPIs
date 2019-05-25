@@ -206,22 +206,20 @@
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
-                        <ul class="treeview-menu">
+                        @*<ul class="treeview-menu">
                             <li><a ui-sref="products"><i class="fa fa-circle-o"></i>List Product</a></li>
                             <li><a ui-sref="product_add"><i class="fa fa-circle-o"></i>Add Products </a></li>
-                        </ul>
+                        </ul>*@
                     </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
-                            <span>Layout Options</span>
+                            <span>Products</span>
                             <span class="label label-primary pull-right">4</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                            <li><a ui-sref="product_categories"><i class="fa fa-circle-o"></i> Categories</a></li>
+                            <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Products</a></li>
                         </ul>
                     </li>
                     <li>
@@ -540,7 +538,7 @@
         <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->
-    <script src="~/Assets/admin/libs/jquery/dist/jquery.js"></script>
+    <script src="~/Assets/admin/libs/jQuery/dist/jquery.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="~/Assets/admin/libs/bootstrap/dist/js/bootstrap.js"></script>
     <!-- SlimScroll -->
@@ -549,23 +547,36 @@
     <script src="~/Assets/admin/libs/fastclick/lib/fastclick.js"></script>
     <!-- AdminLte APP-->
     <script src="~/Assets/admin/js/app.min.js"></script>
-
     <!-- Begun embed angurlar -->
     <!-- Angurlar -->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <!-- angurlar- ui -router -->
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
-    <!-- module common -->
+
+    <!--Angular module common -->
     <script src="~/App/shared/modules/kaid.common.js"></script>
-    <!-- Angurlar- component via products -->
+
+    <!-- Angular Api Service-->
+    <script src="~/App/shared/services/apiService.js"></script>
+
+    <!--Modules-->
     <script src="~/App/components/products/product.module.js"></script>
+    <script src="~/App/components/product_categories/productCategory.module.js"></script>
+
     <!-- Angurlar-app -->
     <script src="~/App/app.js"></script>
-    <!-- Angurlar- component home -->
+
+    <!-- Angurlar-Controller -->
+    <!--  home -->
     <script src="~/App/components/home/homeController.js"></script>
-    <!-- Angurlar- component via products -->
+
+    <!--  products -->
     <script src="~/App/components/products/productListController.js"></script>
     <script src="~/App/components/products/productAddController.js"></script>
     <script src="~/App/components/products/productEditController.js"></script>
+
+    <!-- product_categories -->
+    <script src="~/App/components/product_categories/productCategoryListController.js"></script>
+
 </body>
 </html>

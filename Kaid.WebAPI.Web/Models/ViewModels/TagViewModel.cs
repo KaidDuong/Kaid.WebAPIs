@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-
-namespace Kaid.WebAPI.Web.Models
+namespace Kaid.WebAPI.Web.Models.ViewModels
 {
     public class TagViewModel
     {
