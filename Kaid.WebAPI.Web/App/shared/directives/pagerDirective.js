@@ -39,7 +39,7 @@
                     };
 
                     $scope.pagePlus = function (count) {
-                        return $scope.page + count;
+                        return +$scope.page + count;
                     }
                 }]
         }

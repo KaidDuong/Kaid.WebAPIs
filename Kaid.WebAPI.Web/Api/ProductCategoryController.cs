@@ -26,12 +26,12 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage requestMessage, int page, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage requestMessage,string keyword , int page, int pageSize=20)
         {
             return CreateHttpResponse(requestMessage,
                                       () =>
                                       {
-                                          var model = _productCategoryService.GetAll();
+                                          var model = _productCategoryService.GetAll(keyword);
 
                                           var totalRow = model.Count();
 
