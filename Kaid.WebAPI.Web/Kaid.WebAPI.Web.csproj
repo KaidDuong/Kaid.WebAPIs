@@ -192,6 +192,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
+    <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extentions\EntityExtentions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\Abstract\Auditable.cs" />
@@ -221,6 +222,8 @@
     <Content Include="App\components\products\productListView.html" />
     <Content Include="App\components\product_categories\productCategoryListController.js" />
     <Content Include="App\components\product_categories\productCategoryListView.html" />
+    <Content Include="App\shared\directives\pagerDirective.html" />
+    <Content Include="App\shared\directives\pagerDirective.js" />
     <Content Include="App\shared\filters\statusFilter.js" />
     <Content Include="App\shared\modules\kaid.common.js" />
     <Content Include="App\shared\services\apiService.js" />

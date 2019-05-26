@@ -1,9 +1,9 @@
 ﻿namespace Kaid.WebAPI.Data.Migrations
 {
     using Kaid.WebAPI.Model.Models;
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Kaid.WebAPI.Data.KaidDbContext>
     {
@@ -45,43 +45,53 @@
             //var adminUser = manager.FindByEmail("cooleen.cl@gmail.com");
 
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
-
         }
 
         private void CreateProductCategorySample(Kaid.WebAPI.Data.KaidDbContext dbContext)
         {
-            if (dbContext.PostCategories.Count() == 0)
-           {
-                List<ProductCategory> productCategories = new List<ProductCategory>()
+            List<ProductCategory> productCategories = new List<ProductCategory>()
             {
                 new ProductCategory()
-                {
-                    Name="Category1",
-                    Alias="Category1",
+                {CreateDate=DateTime.Now,
+                    Name="Category5",
+                    Alias="Category5",
                     Status=true
                 },
                  new ProductCategory()
-                {
-                    Name="Category2",
-                    Alias="Category2",
+                {CreateDate=DateTime.Now,
+                    Name="Category6",
+                    Alias="Category6",
                     Status=true
                 },
                 new ProductCategory()
-                {
-                    Name="Category3",
-                    Alias="Category3",
+                {CreateDate=DateTime.Now,
+                    Name="Category7",
+                    Alias="Category7",
+                    Status=false
+                },
+                new ProductCategory()
+                {CreateDate=DateTime.Now,
+                    Name="Category8",
+                    Alias="Category8",
                     Status=true
+                } ,
+                    new ProductCategory()
+                {CreateDate=DateTime.Now,
+                    Name="Category9",
+                    Alias="Category9",
+                    Status=false
                 },
                 new ProductCategory()
                 {
-                    Name="Category4",
-                    Alias="Category4",
+                    CreateDate=DateTime.Now,
+                    Name="Category10",
+                    Alias="Category10",
                     Status=true
                 }
             };
-                dbContext.ProductCategories.AddRange(productCategories);
-                dbContext.SaveChanges();
-            }
+            dbContext.ProductCategories.AddRange(productCategories);
+            dbContext.SaveChanges();
         }
     }
+}
 }
