@@ -227,6 +227,7 @@
     <Content Include="App\shared\filters\statusFilter.js" />
     <Content Include="App\shared\modules\kaid.common.js" />
     <Content Include="App\shared\services\apiService.js" />
+    <Content Include="App\shared\services\notificationService.js" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
@@ -440,6 +441,10 @@
     <Content Include="Assets\admin\libs\slimscroll\examples\style.css" />
     <Content Include="Assets\admin\libs\slimscroll\jquery.slimscroll.js" />
     <Content Include="Assets\admin\libs\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Assets\admin\libs\toastr\toastr.css" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js" />
+    <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
+    <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -596,6 +601,13 @@
     <Content Include="Assets\admin\libs\jQuery\dist\jquery.min.map" />
     <Content Include="Assets\admin\libs\jQuery\src\sizzle\dist\sizzle.min.map" />
     <Content Include="App\components\product_categories\productCategory.module.js" />
+    <Content Include="Assets\admin\libs\toastr\.bower.json" />
+    <Content Include="Assets\admin\libs\toastr\bower.json" />
+    <Content Include="Assets\admin\libs\toastr\LICENSE" />
+    <Content Include="Assets\admin\libs\toastr\README.md" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js.map" />
+    <Content Include="Assets\admin\libs\toastr\toastr.less" />
+    <Content Include="Assets\admin\libs\toastr\toastr.scss" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
