@@ -1,8 +1,7 @@
 ﻿<!-- Content Header (Page header) -->
 <section class="content-header" >
     <h1>
-        Home Pages
-        <small>this is  all starts here</small>
+        Categories Pages
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -27,20 +26,27 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th style="width: 10px">ID</th>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th style="width: 40px">Status</th>
+                                <th style="width: 5%">ID</th>
+                                <th style="width: 55%">Name</th>
+                                <th style="width: 20%">Date</th>
+                                <th style="width: 10%">Status</th>
+                                <th style="width: 10%">Operatures</th>
                             </tr>
                             <!-- put the item out the $scope.productCategories -->
                             <tr ng-repeat="item in productCategories">
                                 <td>{{item.ID}}</td>
                                 <td>{{item.Name}}</td>
                                 <td>
-                                    {{item.CreatedDate}}
+                                    {{item.CreateDate | date :'dd/MM/yyyy hh:mm:ss'}}
                                 </td>
                                 <td>
-                                    {{item.Status}}
+                                    <span ng-class="{'badge bg-red-gradient':item.Status==true,'badge bg-blue-gradient':item.Status==false}">
+                                        {{item.Status| statusFilter}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
 </table>

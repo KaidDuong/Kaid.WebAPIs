@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using Kaid.WebAPI.Model.Models;
 using Kaid.WebAPI.Service;
 using Kaid.WebAPI.Web.Infrastructure.Core;
 using Kaid.WebAPI.Web.Models.ViewModels;
@@ -31,7 +32,7 @@ namespace Kaid.WebAPI.Web.Api
                                       () =>
                                       {
                                           var products = _productCategoryService.GetAll();
-                                          var productVms = Mapper.Map<List<ProductCategoryViewModel>>(products);
+                                          var productVms = Mapper.Map<IEnumerable<ProductCategory>,IEnumerable<ProductCategoryViewModel>>(products);
                                           return requestMessage.CreateResponse(HttpStatusCode.OK, productVms);
                                       });
         }

@@ -1,4 +1,5 @@
-﻿(function (app) {
+﻿
+(function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
     productCategoryListController.$inject = ['$scope','apiService'];
