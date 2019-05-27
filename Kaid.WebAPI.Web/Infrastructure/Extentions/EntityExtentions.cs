@@ -5,47 +5,67 @@ namespace Kaid.WebAPI.Web.Infrastructure.Extentions
 {
     public static class EntityExtentions
     {
-        public static void UpdatePostCategory(this PostCategory postCategory, PostCategoryViewModel postCategoryViewModel)
+        public static void UpdatePostCategory(this PostCategory model, PostCategoryViewModel viewModel)
         {
-            postCategory.ID = postCategoryViewModel.ID;
-            postCategory.Name = postCategoryViewModel.Name;
-            postCategory.Description = postCategoryViewModel.Description;
-            postCategory.Alias = postCategoryViewModel.Alias;
+            model.ID = viewModel.ID;
+            model.Name = viewModel.Name;
+            model.Description = viewModel.Description;
+            model.Alias = viewModel.Alias;
 
-            postCategory.ParentID = postCategoryViewModel.ParentID;
-            postCategory.DisplayOrder = postCategoryViewModel.DisplayOrder;
-            postCategory.Image = postCategoryViewModel.Image;
-            postCategory.HomeFlag = postCategory.HomeFlag;
+            model.ParentID = viewModel.ParentID;
+            model.DisplayOrder = viewModel.DisplayOrder;
+            model.Image = viewModel.Image;
+            model.HomeFlag = model.HomeFlag;
 
-            postCategory.CreateBy = postCategoryViewModel.CreateBy;
-            postCategory.CreateDate = postCategoryViewModel.CreateDate;
-            postCategory.UpdateBy = postCategoryViewModel.UpdateBy;
-            postCategory.UpdateDate = postCategoryViewModel.UpdateDate;
-            postCategory.MetaDescription = postCategoryViewModel.MetaDescription;
-            postCategory.MetaKeyword = postCategoryViewModel.MetaKeyword;
-            postCategory.Status = postCategoryViewModel.Status;
+            model.CreateBy = viewModel.CreateBy;
+            model.CreateDate = viewModel.CreateDate;
+            model.UpdateBy = viewModel.UpdateBy;
+            model.UpdateDate = viewModel.UpdateDate;
+            model.MetaDescription = viewModel.MetaDescription;
+            model.MetaKeyword = viewModel.MetaKeyword;
+            model.Status = viewModel.Status;
         }
 
-        public static void UpdatePost(this Post post, PostViewModel postViewModel)
+        public static void UpdatePost(this Post model, PostViewModel viewModel)
         {
-            post.ID = postViewModel.ID;
-            post.Name = postViewModel.Name;
-            post.Description = postViewModel.Description;
-            post.Alias = postViewModel.Alias;
+            model.ID = viewModel.ID;
+            model.Name = viewModel.Name;
+            model.Description = viewModel.Description;
+            model.Alias = viewModel.Alias;
 
-            post.CategoryID = postViewModel.CategoryID;
-            post.Content = postViewModel.Content;
-            post.ViewCount = postViewModel.ViewCount;
-            post.Image = postViewModel.Image;
-            post.HomeFlag = postViewModel.HomeFlag;
+            model.CategoryID = viewModel.CategoryID;
+            model.Content = viewModel.Content;
+            model.ViewCount = viewModel.ViewCount;
+            model.Image = viewModel.Image;
+            model.HomeFlag = viewModel.HomeFlag;
 
-            post.CreateBy = postViewModel.CreateBy;
-            post.CreateDate = postViewModel.CreateDate;
-            post.UpdateBy = postViewModel.UpdateBy;
-            post.UpdateDate = postViewModel.UpdateDate;
-            post.MetaDescription = postViewModel.MetaDescription;
-            post.MetaKeyword = postViewModel.MetaKeyword;
-            post.Status = postViewModel.Status;
+            model.CreateBy = viewModel.CreateBy;
+            model.CreateDate = viewModel.CreateDate;
+            model.UpdateBy = viewModel.UpdateBy;
+            model.UpdateDate = viewModel.UpdateDate;
+            model.MetaDescription = viewModel.MetaDescription;
+            model.MetaKeyword = viewModel.MetaKeyword;
+            model.Status = viewModel.Status;
+        }
+        public static void UpdateProductCategory(this ProductCategory model, ProductCategoryViewModel viewModel)
+        {
+          model.ID = viewModel.ID;
+          model.Name = viewModel.Name;
+          model.Description = viewModel.Description;
+          model.Alias = viewModel.Alias;
+        
+          model.ParentID = viewModel.ParentID;
+          model.DisplayOrder = viewModel.DisplayOrder;
+          model.Image = viewModel.Image;
+          model.HomeFlag = viewModel.HomeFlag;
+         
+          model.CreateBy = viewModel.CreateBy;
+          model.CreateDate = viewModel.CreateDate;
+          model.UpdateBy = viewModel.UpdateBy;
+          model.UpdateDate = viewModel.UpdateDate;
+          model.MetaDescription = viewModel.MetaDescription;
+          model.MetaKeyword = viewModel.MetaKeyword;
+          model.Status = viewModel.Status;
         }
     }
 }

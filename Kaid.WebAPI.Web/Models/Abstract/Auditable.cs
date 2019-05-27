@@ -1,21 +1,19 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kaid.WebAPI.Web.Models.Abstract
 {
     public abstract class Auditable : IAuditable, ISeoable, ISwitchable, IInformatable
     {
-        
-       
         public int ID { get; set; }
-        
+
+        [Required]
         public string Name { get; set; }
-        
+
+        [Required]
         public string Alias { get; set; }
 
         public string Image { get; set; }
-
 
         public string Description { get; set; }
 
@@ -27,12 +25,13 @@ namespace Kaid.WebAPI.Web.Models.Abstract
 
         public string UpdateBy { set; get; }
 
+        [Required]
         public bool Status { set; get; }
+
         public bool? HomeFlag { set; get; }
 
         public string MetaKeyword { set; get; }
 
-    
         public string MetaDescription { set; get; }
     }
 }

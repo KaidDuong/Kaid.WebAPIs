@@ -2,6 +2,7 @@
 using Kaid.WebAPI.Model.Models;
 using Kaid.WebAPI.Service;
 using Kaid.WebAPI.Web.Infrastructure.Core;
+using Kaid.WebAPI.Web.Infrastructure.Extentions;
 using Kaid.WebAPI.Web.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,49 @@ namespace Kaid.WebAPI.Web.Api
                                               TotalCount = totalRow
                                           };
                                           return requestMessage.CreateResponse(HttpStatusCode.OK, paginationSet);
+                                      });
+        }
+
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage requestMessage)
+        {
+            return CreateHttpResponse(requestMessage,
+                                      () =>
+                                      {
+                                          var model = _productCategoryService.GetAll();
+
+                                          var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                                          return requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                                      });
+        }
+
+        [Route("create")]
+        [HttpPost]
+        public HttpResponseMessage Create(HttpRequestMessage requestMessage,ProductCategoryViewModel viewModel)
+        {
+            return CreateHttpResponse(requestMessage,
+                                      ()=>
+                                      {
+                                          if (!ModelState.IsValid)
+                                          {
+                                              return requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                                          }
+                                          else
+                                          {
+                                              var model = new ProductCategory();
+                                              model.UpdateProductCategory(viewModel);
+
+                                              model = _productCategoryService.Add(model);
+                                              _productCategoryService.SaveChanges();
+
+                                              var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
+                                              return requestMessage.CreateResponse(HttpStatusCode.Created, responseData);
+
+                                          }
+
                                       });
         }
     }

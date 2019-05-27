@@ -32,7 +32,7 @@
                                 if (result.data.TotalCount == 0) {
                                     notificationService.displayWarning('There are no the records was found!');
                                 }
-                                else {
+                                else if(config.params.keyword !=''){
                                     notificationService.displaySuccess('Find ' + result.data.TotalCount + ' record(s)');
                                 }
                                 $scope.productCategories = result.data.Items;
