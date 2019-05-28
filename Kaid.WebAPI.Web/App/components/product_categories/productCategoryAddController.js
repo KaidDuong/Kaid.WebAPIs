@@ -1,8 +1,8 @@
 ﻿(function (app) {
     app.controller('productCategoryAddController', productCategoryAddController);
 
-    productCategoryAddController.$inject = ['apiService','$scope','notificationService','$state'];
-    function productCategoryAddController(apiService, $scope, notificationService,$state)
+    productCategoryAddController.$inject = ['apiService','$scope','notificationService','$state','commonService'];
+    function productCategoryAddController(apiService, $scope, notificationService,$state,commonService)
     {
         $scope.productCategory =
             {
@@ -11,10 +11,16 @@
             HomeFlag: true
             };
 
+        $scope.getSeoTitle = getSeoTitle;
+
         $scope.addProductCategory = addProductCategory;
 
+        function getSeoTitle() {
+            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
+        }
+
         function addProductCategory() {
-            apiService.post('api/productcategory/create',
+            apiService.post('/api/productcategory/create',
                 $scope.productCategory,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + 'is created !');
@@ -26,7 +32,7 @@
         }
 
         function loadParentCategories() {
-            apiService.get('api/productcategory/getallparents',
+            apiService.get('/api/productcategory/getallparents',
                            null,
                            function (result) 
                            {

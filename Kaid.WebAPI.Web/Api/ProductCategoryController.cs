@@ -16,6 +16,7 @@ namespace Kaid.WebAPI.Web.Api
     [RoutePrefix("api/productCategory")]
     public class ProductCategoryController : ApiControllerBase
     {
+        #region Initialize
         public IProductCategoryService _productCategoryService;
 
         public ProductCategoryController(IErrorService errorService,
@@ -24,9 +25,10 @@ namespace Kaid.WebAPI.Web.Api
         {
             this._productCategoryService = productCategoryService;
         }
-
+        #endregion
         [Route("getall")]
         [HttpGet]
+        [AllowAnonymous]
         public HttpResponseMessage GetAll(HttpRequestMessage requestMessage,string keyword , int page, int pageSize=20)
         {
             return CreateHttpResponse(requestMessage,
@@ -54,6 +56,7 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("getallparents")]
         [HttpGet]
+        [AllowAnonymous]
         public HttpResponseMessage GetAll(HttpRequestMessage requestMessage)
         {
             return CreateHttpResponse(requestMessage,
@@ -67,8 +70,26 @@ namespace Kaid.WebAPI.Web.Api
                                       });
         }
 
+        [Route("getbyid")]
+        [HttpGet]
+        [AllowAnonymous]
+        public HttpResponseMessage GetById(HttpRequestMessage requestMessage,int id)
+        {
+            return CreateHttpResponse(requestMessage,
+                                      () => 
+                                      {
+                                          var model = _productCategoryService.GetById(id);
+
+                                          var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
+                                          return requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                                      }
+                                       );
+        }
+
         [Route("create")]
         [HttpPost]
+        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage requestMessage,ProductCategoryViewModel viewModel)
         {
             return CreateHttpResponse(requestMessage,
@@ -93,6 +114,35 @@ namespace Kaid.WebAPI.Web.Api
                                           }
 
                                       });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
+        public HttpResponseMessage Update (HttpRequestMessage requestMessage,ProductCategoryViewModel viewModel)
+        {
+            return CreateHttpResponse(requestMessage,
+                                       () => 
+                                       {
+                                           if (!ModelState.IsValid)
+                                           {
+                                               return requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                                           }
+                                           else
+                                           {
+                                               var model = new ProductCategory();
+                                               model.UpdateProductCategory(viewModel);
+
+                                               _productCategoryService.Update(model);
+                                               _productCategoryService.SaveChanges();
+
+                                               var responseData = viewModel;
+
+                                               return requestMessage.CreateResponse(HttpStatusCode.Created, responseData);
+                                           }
+                                       }
+                                      
+                                      );
         }
     }
 }
