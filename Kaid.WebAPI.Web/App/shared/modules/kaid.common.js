@@ -5,6 +5,6 @@
 
 (function ()
 {
-    angular.module('kaid.common',['ui.router']);
+    angular.module('kaid.common',['ui.router','ngBootbox']);
 
 })();

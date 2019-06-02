@@ -132,7 +132,7 @@ namespace Kaid.WebAPI.Web.Api
                                            {
                                                var model = new ProductCategory();
                                                model.UpdateProductCategory(viewModel);
-
+                                               model.UpdateDate = DateTime.Now;
                                                _productCategoryService.Update(model);
                                                _productCategoryService.SaveChanges();
 
@@ -142,6 +142,32 @@ namespace Kaid.WebAPI.Web.Api
                                            }
                                        }
                                       
+                                      );
+        }
+
+        [Route("remove")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Remove(HttpRequestMessage requestMessage, int id)
+        {
+            return CreateHttpResponse(requestMessage,
+                                       () =>
+                                       {
+                                           if (!ModelState.IsValid)
+                                           {
+                                               return requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                                           }
+                                           else
+                                           {
+                                               var model =  _productCategoryService.Delete(id);
+                                               _productCategoryService.SaveChanges();
+
+                                               var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
+                                               return requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                                           }
+                                       }
+
                                       );
         }
     }

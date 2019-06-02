@@ -10,7 +10,8 @@
         return {
             get: get,
             post: post,
-            put: put
+            put: put,
+            remove: remove
         };
         function get(url, params, success, failure) {
             $http.get(url, params).then(
@@ -47,6 +48,24 @@
                 },
                 function (error)
                 {
+                    if (error.status === 401) {
+                        notificationService.displayError('Authenticate is requied!!');
+                    }
+                    else if (failure != null) {
+                        failure(error);
+                    }
+                }
+                );
+        }
+
+        function remove(url, data, success, failure) {
+            $http.delete(url, data)
+                .then
+                (
+                function (result) {
+                    success(result);
+                },
+                function (error) {
                     if (error.status === 401) {
                         notificationService.displayError('Authenticate is requied!!');
                     }
