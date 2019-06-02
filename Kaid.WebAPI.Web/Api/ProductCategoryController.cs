@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace Kaid.WebAPI.Web.Api
 {
@@ -170,5 +171,40 @@ namespace Kaid.WebAPI.Web.Api
 
                                       );
         }
+
+        [Route("removes")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage MultiRemove(HttpRequestMessage requestMessage, string listIds)
+        {
+            return CreateHttpResponse(requestMessage,
+                                       () =>
+                                       {
+                                           if (!ModelState.IsValid)
+                                           {
+                                               return requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                                           }
+                                           else
+                                           {
+                                               var ids = new JavaScriptSerializer().Deserialize<List<int>>(listIds);
+
+                                               var models = new List<ProductCategory>();
+
+                                               foreach( var id in ids)
+                                               {
+                                                   models.Add( _productCategoryService.Delete(id));
+                                               }
+                                               
+                                               _productCategoryService.SaveChanges();
+
+                                               var responseData = Mapper.Map<IEnumerable<ProductCategory>,IEnumerable< ProductCategoryViewModel>>(models);
+
+                                               return requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                                           }
+                                       }
+
+                                      );
+        }
+
     }
 }

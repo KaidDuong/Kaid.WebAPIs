@@ -31,7 +31,8 @@
                 </div><!-- /input-group -->
             </div>
             <div class="col-md-6">
-                <button class="btn btn-success" ui-sref="add_product_category" >Create</button>
+                <button class="btn btn-success" ui-sref="add_product_category">Create</button>
+                <button class="btn btn-danger" ng-click="multiRemove()" id="btnRemove" disabled >Remove</button>
             </div>
         </div>
             <div class="row">
@@ -39,6 +40,7 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
+                                <th> <input type="checkbox" name="all" ng-click="allSelect()" /></th>
                                 <th style="width: 5%">ID</th>
                                 <th style="width: 55%">Name</th>
                                 <th style="width: 20%">Date</th>
@@ -47,6 +49,7 @@
                             </tr>
                             <!-- put the item out the $scope.productCategories -->
                             <tr ng-repeat="item in productCategories">
+                                <td> <input type="checkbox" name="all" ng-model="item.checked" /></td>
                                 <td>{{item.ID}}</td>
                                 <td>{{item.Name}}</td>
                                 <td>
@@ -63,7 +66,7 @@
                                 </td>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="5"><span class="pull-right">Page : {{page+1}}  The number of the record(s) : {{totalCount}} </span> </td>
+                                        <td colspan="6"><span class="pull-right">Page : {{page+1}}  The number of the record(s) : {{totalCount}} </span> </td>
                                     </tr>
                                 </tfoot>
                             </tr>

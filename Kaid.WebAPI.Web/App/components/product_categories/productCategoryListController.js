@@ -2,9 +2,9 @@
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope','apiService','notificationService','$ngBootbox'];
+    productCategoryListController.$inject = ['$scope','apiService','notificationService','$ngBootbox','$filter'];
 
-    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox,$filter) {
 
         $scope.productCategories = [];
         $scope.page = 0;
@@ -15,6 +15,62 @@
         $scope.search = search;
 
         $scope.remove = remove;
+
+        $scope.multiRemove = multiRemove;
+
+        $scope.allSelect = allSelect;
+
+        $scope.isAll = false;
+        function allSelect() {
+            if ($scope.isAll===false) {
+                angular.forEach($scope.productCategories,
+                               function (item) {
+                                   item.checked = true;
+                               });
+                $scope.isAll = true;
+            }else{
+                angular.forEach($scope.productCategories,
+                               function (item) {
+                                   item.checked = false;
+                               });
+                $scope.isAll = false;
+            }
+        };
+
+        function multiRemove() {
+            var listIds = [];
+            $.each($scope.selected, function (i, item) {
+                listIds.push(item.ID);
+            });
+
+            var config = {
+                params: {
+                    listIds: JSON.stringify(listIds)
+                }
+            };
+            apiService.remove("/api/productcategory/Removes",
+                             config,
+                             function(result){
+                                 notificationService.displaySuccess('Deleting is success ' + result.data.length + ' records!');
+                                 search();
+                             },
+                             function(error){
+                                 notificationService.displayError('Deleting is not success!');
+                             });
+        }
+ 
+        $scope.$watch("productCategories",
+                      function(newer,older){
+                          var checked = $filter("filter")(newer, { checked: true });
+
+                          if (checked.length) {
+                              $scope.selected = checked;
+                              $('#btnRemove').removeAttr('disabled');
+                          } else {
+                              $('#btnRemove').attr('disabled', 'disabled');
+                          }
+                      },
+                      true  );
 
         function remove(id) {
             $ngBootbox.confirm('Are you sure to delete its?')
