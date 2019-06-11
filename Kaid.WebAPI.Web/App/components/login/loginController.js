@@ -1,11 +1,31 @@
 ﻿(function (app) {
-    app.controller('loginController', loginController);
+    app.controller('loginController',
+                   [
+                       '$scope',
+                       'loginService',
+                       '$injector',
+                       'notificationService',
+                       function ($scope, loginService, $injector, notificationService) {
+                           $scope.loginData = {
+                               userName: "",
+                               password: ""
+                           };
 
-    loginController.$inject = ['$scope','$state'];
+                           $scope.loginSubmit = function () {
+                               loginService.login($scope.loginData.userName,
+                                                 $scope.loginData.password)
+                                            .then(function(response){
+                                                if (response != null && response.error != undefined) {
+                                                    notificationService.displayError(response.error);
+                                                }
+                                                else {
+                                                    var stateService = $injector.get('$state');
+                                                    stateService.go('home');
+                                                }
 
-    function loginController($scope,$state) {
-        $scope.loginSubmit = function () {
-            $state.go('home');
-        };
-    }
+                                            });
+                           }
+                       }
+                   
+                       ]);
 })(angular.module('kaid'));
