@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace Kaid.WebAPI.Web.Api
 {
     [RoutePrefix("api/productCategory")]
+    [Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         #region Initialize
@@ -29,7 +30,7 @@ namespace Kaid.WebAPI.Web.Api
         #endregion
         [Route("getall")]
         [HttpGet]
-        [AllowAnonymous]
+       
         public HttpResponseMessage GetAll(HttpRequestMessage requestMessage,string keyword , int page, int pageSize=20)
         {
             return CreateHttpResponse(requestMessage,
@@ -57,7 +58,7 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("getallparents")]
         [HttpGet]
-        [AllowAnonymous]
+        
         public HttpResponseMessage GetAll(HttpRequestMessage requestMessage)
         {
             return CreateHttpResponse(requestMessage,
@@ -73,7 +74,6 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("getbyid")]
         [HttpGet]
-        [AllowAnonymous]
         public HttpResponseMessage GetById(HttpRequestMessage requestMessage,int id)
         {
             return CreateHttpResponse(requestMessage,
@@ -90,7 +90,6 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("create")]
         [HttpPost]
-        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage requestMessage,ProductCategoryViewModel viewModel)
         {
             return CreateHttpResponse(requestMessage,
@@ -119,7 +118,6 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("update")]
         [HttpPut]
-        [AllowAnonymous]
         public HttpResponseMessage Update (HttpRequestMessage requestMessage,ProductCategoryViewModel viewModel)
         {
             return CreateHttpResponse(requestMessage,
@@ -134,6 +132,7 @@ namespace Kaid.WebAPI.Web.Api
                                                var model = new ProductCategory();
                                                model.UpdateProductCategory(viewModel);
                                                model.UpdateDate = DateTime.Now;
+                                               model.UpdateBy = User.Identity.Name;
                                                _productCategoryService.Update(model);
                                                _productCategoryService.SaveChanges();
 
@@ -148,7 +147,6 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("remove")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage Remove(HttpRequestMessage requestMessage, int id)
         {
             return CreateHttpResponse(requestMessage,
@@ -174,7 +172,6 @@ namespace Kaid.WebAPI.Web.Api
 
         [Route("removes")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage MultiRemove(HttpRequestMessage requestMessage, string listIds)
         {
             return CreateHttpResponse(requestMessage,
