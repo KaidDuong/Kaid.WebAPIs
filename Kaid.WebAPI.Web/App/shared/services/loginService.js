@@ -31,7 +31,7 @@
                                    deferred.resolve(null);
                                })
                                .error(function(err, status){
-                                   authData.authenticationData.IsAuthenticated = flase;
+                                   authData.authenticationData.IsAuthenticated = false;
                                    authData.authenticationData.userName = "";
                                    deferred.resolve(err);
                                });
