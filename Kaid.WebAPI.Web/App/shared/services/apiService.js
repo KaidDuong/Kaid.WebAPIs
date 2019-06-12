@@ -14,7 +14,7 @@
             remove: remove
         };
         function get(url, params, success, failure) {
-            authenticationService.sethHeader();
+            authenticationService.setHeader();
             $http.get(url, params).then(
                 function (result) {
                     success(result);
@@ -25,7 +25,7 @@
                 });
         }
         function post(url, data, success, failure) {
-            authenticationService.sethHeader();
+            authenticationService.setHeader();
             $http.post(url, data)
                 .then(function (result)
                 {
@@ -41,7 +41,7 @@
                 });
         }
         function put(url, data, success, failure) {
-            authenticationService.sethHeader();
+            authenticationService.setHeader();
             $http.put(url, data)
                 .then
                 (
@@ -62,7 +62,7 @@
         }
 
         function remove(url, data, success, failure) {
-            authenticationService.sethHeader();
+            authenticationService.setHeader();
             $http.delete(url, data)
                 .then
                 (
