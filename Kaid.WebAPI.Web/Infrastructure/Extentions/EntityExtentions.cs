@@ -67,5 +67,37 @@ namespace Kaid.WebAPI.Web.Infrastructure.Extentions
           model.MetaKeyword = viewModel.MetaKeyword;
           model.Status = viewModel.Status;
         }
+
+        public static void UpdateProduct(this Product model, ProductViewModel viewModel)
+        {
+            model.ID = viewModel.ID;
+            model.Name = viewModel.Name;
+            model.Description = viewModel.Description;
+            model.Alias = viewModel.Alias;
+
+            model.Price = viewModel.Price;
+            model.PromotionPrice = viewModel.PromotionPrice;
+            model.Warranty = viewModel.Warranty;
+
+            model.CategoryID = viewModel.CategoryID;
+            model.MoreImages = viewModel.MoreImages;
+            model.Image = viewModel.Image;
+            model.HomeFlag = viewModel.HomeFlag;
+
+            model.CreateBy = viewModel.CreateBy;
+            model.CreateDate = viewModel.CreateDate;
+
+            model.UpdateBy = viewModel.UpdateBy;
+            model.UpdateDate = viewModel.UpdateDate;
+
+            model.MetaDescription = viewModel.MetaDescription;
+            model.MetaKeyword = viewModel.MetaKeyword;
+            model.Content = viewModel.Content;
+
+            model.Status = viewModel.Status;
+            model.HomeFlag = viewModel.HomeFlag;
+            model.HotFlag = viewModel.HotFlag;
+            model.ViewCount = viewModel.ViewCount;
+        }
     }
 }

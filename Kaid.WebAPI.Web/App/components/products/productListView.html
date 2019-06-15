@@ -1,13 +1,12 @@
 ﻿<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Home Pages
-        <small>this is  all starts here</small>
+        Products Pages
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li class="active">Categories</li>
+        
+        <li class="active">Products</li>
     </ol>
 </section>
 <!-- Main content -->
@@ -15,41 +14,68 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Categories</h3>
+            <h3 class="box-title">Products</h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <div class="box-body">
-           <div class="row">
-               <div class="col-md-12">
-                   <table class="table table-bordered">
-                       <tbody>
-                           <tr>
-                               <th style="width: 10px">#</th>
-                               <th>Task</th>
-                               <th>Progress</th>
-                               <th style="width: 40px">Label</th>
-                           </tr>
-                           <tr>
-                               <td>1.</td>
-                               <td>Update software</td>
-                               <td>
-                                   <div class="progress progress-xs">
-                                       <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                   </div>
-                               </td>
-                               <td><span class="badge bg-red">55%</span></td>
-                           </tr>
-                           
-                       </tbody>
-                   </table>
-               </div>
-           </div>
+            <div class="=row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Keyword...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="search()">Search!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success" ui-sref="add_product">Create</button>
+                    <button class="btn btn-danger" ng-click="multiRemove()" id="btnRemove" disabled>Remove</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th> <input type="checkbox" name="all" ng-click="allSelect()" /></th>
+                                <th style="width: 5%">ID</th>
+                                <th style="width: 55%">Name</th>
+                                <th style="width: 20%">Date</th>
+                                <th style="width: 10%">Status</th>
+                                <th style="width: 10%">Operatures</th>
+                            </tr>
+                            <!-- put the item out the $scope.productCategories -->
+                            <tr ng-repeat="item in products">
+                                <td> <input type="checkbox" name="all" ng-model="item.checked" /></td>
+                                <td>{{item.ID}}</td>
+                                <td>{{item.Name}}</td>
+                                <td>
+                                    {{item.CreateDate | date :'dd/MM/yyyy hh:mm:ss'}}
+                                </td>
+                                <td>
+                                    <span ng-class="{'badge bg-red-gradient':item.Status==true,'badge bg-blue-gradient':item.Status==false}">
+                                        {{item.Status| statusFilter}}
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" ui-sref="edit_product({id:item.ID})"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-primary" ng-click="remove(item.ID)"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"><span class="pull-right">Page : {{page+1}}  The number of the record(s) : {{totalCount}} </span> </td>
+                            </tr>
+                        </tfoot>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div><!-- /.box-body -->
         <div class="box-footer">
-
+            <pager-directive page="{{page}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getProduct(page)"> </pager-directive>
         </div><!-- /.box-footer-->
     </div><!-- /.box -->
 </section><!-- /.content -->

@@ -6,7 +6,6 @@ namespace Kaid.WebAPI.Web.Models.ViewModels
     public class ProductViewModel : Auditable
     {
         public int CategoryID { set; get; }
-        
         public string MoreImages { set; get; }
         public decimal Price { set; get; }
         public decimal? PromotionPrice { set; get; }
