@@ -14,11 +14,13 @@
     config.$inject = [
                       '$stateProvider',
                       '$urlRouterProvider',
-                      '$httpProvider'
+                      '$httpProvider',
+                      '$qProvider'
                      ];
 
     function config($stateProvider,
-        $urlRouterProvider) {
+        $urlRouterProvider,$qProvider) {
+        $qProvider.errorOnUnhandledRejections(false)
         $stateProvider.state('base',
             {
                 url: '',
