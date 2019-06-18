@@ -4432,12 +4432,6 @@
     <Content Include="Assets\admin\libs\angular\LICENSE.md" />
     <Content Include="Assets\admin\libs\angular\package.json" />
     <Content Include="Assets\admin\libs\angular\README.md" />
-    <Content Include="Assets\admin\libs\angular-ui-router\.bower.json" />
-    <Content Include="Assets\admin\libs\angular-ui-router\bower.json" />
-    <Content Include="Assets\admin\libs\angular-ui-router\CHANGELOG.md" />
-    <Content Include="Assets\admin\libs\angular-ui-router\CONTRIBUTING.md" />
-    <Content Include="Assets\admin\libs\angular-ui-router\LICENSE" />
-    <Content Include="Assets\admin\libs\angular-ui-router\README.md" />
     <Content Include="Assets\admin\libs\jquery\.bower.json" />
     <Content Include="Assets\admin\libs\jquery\bower.json" />
     <Content Include="Assets\admin\libs\jquery\dist\jquery.min.map" />
@@ -4484,6 +4478,12 @@
     <Content Include="Assets\admin\libs\ng-ckeditor\package.json" />
     <Content Include="Assets\admin\libs\ng-ckeditor\README.md" />
     <Content Include="Assets\admin\libs\ng-ckeditor\src\styles\ng-ckeditor.less" />
+    <Content Include="Assets\admin\libs\angular-ui-router\.bower.json" />
+    <Content Include="Assets\admin\libs\angular-ui-router\bower.json" />
+    <Content Include="Assets\admin\libs\angular-ui-router\CHANGELOG.md" />
+    <Content Include="Assets\admin\libs\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="Assets\admin\libs\angular-ui-router\LICENSE" />
+    <Content Include="Assets\admin\libs\angular-ui-router\README.md" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
