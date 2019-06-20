@@ -75,8 +75,8 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">More Image</label>
                     <div class="col-sm-10">
-                        <ul>
-                            <li><img ng-repeat="img in MoreImages" ng-src="img" alt="Alternate Text" width="100" /></li>
+                        <ul class="list-inline">
+                            <li><img ng-repeat="img in moreImages" ng-src="{{img}}" alt="Alternate Text" width="100" /></li>
                         </ul>
                         <button class="btn btn-default" type="button" ng-click="chooseMoreImages()">Choose More Images</button>
                     </div>

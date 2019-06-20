@@ -28,16 +28,16 @@
                     $scope.product.Image = fileUrl;
                 });
             };
-            ckFinder.popup();
+                        ckFinder.popup();
         };
 
-        $scope.MoreImages = [];
+        $scope.moreImages = [];
 
         $scope.chooseMoreImages = function () {
             var ckFinder = new CKFinder();
             ckFinder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
-                    $scope.MoreImages.push(fileUrl);
+                    $scope.moreImages.push(fileUrl);
                 });
             };
             ckFinder.popup();
@@ -48,7 +48,7 @@
         }
 
         function editProduct() {
-            $scope.product.MoreImages = JSON.stringify($scope.MoreImages);
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
 
             apiService.put('/api/product/update',
                           $scope.product,
@@ -72,7 +72,7 @@
                 config,
                 function (result) {
                     $scope.product = result.data;
-                    $scope.MoreImages = JSON.parse($scope.product.MoreImages);
+                    $scope.moreImages = JSON.parse($scope.product.MoreImages);
                 },
                 function (error) {
                     notificationService.displayError(error.data.Message);

@@ -31,13 +31,13 @@
             ckFinder.popup();
         };
 
-        $scope.MoreImages = [];
+        $scope.moreImages = [];
 
         $scope.chooseMoreImages = function () {
             var ckFinder = new CKFinder();
             ckFinder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
-                    $scope.MoreImages.push(fileUrl);
+                    $scope.moreImages.push(fileUrl);
                 });
             };
             ckFinder.popup();
@@ -48,7 +48,7 @@
         }
 
         function addProduct() {
-            $scope.product.MoreImages = JSON.stringify( $scope.MoreImages);
+            $scope.product.MoreImages = JSON.stringify( $scope.moreImages);
 
             apiService.post("/api/product/create",
                             $scope.product,
