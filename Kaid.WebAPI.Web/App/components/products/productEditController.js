@@ -22,11 +22,25 @@
         };
 
         $scope.chooseImage = function () {
-            var ckfinder = new CKFinder();
-            ckfinder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+            var ckFinder = new CKFinder();
+            ckFinder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
             };
-            ckfinder.popup();
+            ckFinder.popup();
+        };
+
+        $scope.MoreImages = [];
+
+        $scope.chooseMoreImages = function () {
+            var ckFinder = new CKFinder();
+            ckFinder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.MoreImages.push(fileUrl);
+                });
+            };
+            ckFinder.popup();
         };
 
         function getSeoTitle() {
@@ -34,6 +48,8 @@
         }
 
         function editProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.MoreImages);
+
             apiService.put('/api/product/update',
                           $scope.product,
                           function(result){
@@ -56,6 +72,7 @@
                 config,
                 function (result) {
                     $scope.product = result.data;
+                    $scope.MoreImages = JSON.parse($scope.product.MoreImages);
                 },
                 function (error) {
                     notificationService.displayError(error.data.Message);

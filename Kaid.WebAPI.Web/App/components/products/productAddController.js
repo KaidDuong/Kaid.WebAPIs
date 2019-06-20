@@ -22,17 +22,34 @@
         };
 
         $scope.chooseImage = function () {
-            var ckFinder = new CKFinder;
+            var ckFinder = new CKFinder();
             ckFinder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
             };
             ckFinder.popup();
         };
+
+        $scope.MoreImages = [];
+
+        $scope.chooseMoreImages = function () {
+            var ckFinder = new CKFinder();
+            ckFinder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.MoreImages.push(fileUrl);
+                });
+            };
+            ckFinder.popup();
+        };
+
         function getSeoTitle() {
             $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
         }
 
         function addProduct() {
+            $scope.product.MoreImages = JSON.stringify( $scope.MoreImages);
+
             apiService.post("/api/product/create",
                             $scope.product,
                             function(result){
