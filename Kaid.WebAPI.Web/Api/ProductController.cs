@@ -87,6 +87,8 @@ namespace Kaid.WebAPI.Web.Api
                                               var model = new Product();
 
                                               model.UpdateProduct(viewModel);
+                                              model.CreateDate = DateTime.Now;
+                                              model.CreateBy = User.Identity.Name;
 
                                               model=_productService.Add(model);
                                               _productService.SaveChanges();

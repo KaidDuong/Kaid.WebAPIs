@@ -20,7 +20,7 @@
                     success(result);
                 },
                 function (error) {
-                    failure(error)
+                    failure(error);
                     
                 });
         }

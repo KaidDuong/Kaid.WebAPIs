@@ -13,7 +13,7 @@
 
         $scope.getProducts = getProducts;
 
-        $scope.keyword = '';
+        $scope.keyword ='';
 
         $scope.search = search;
 
@@ -25,15 +25,12 @@
 
         $scope.isAllSelect = false;
 
-        function getProducts(page) {
-
-            page = page || 0;
-
+        function getProducts() {
             var config = {
                 params: {
                     keyword: $scope.keyword,
-                    page: page,
-                    pageSize: 4
+                    page: $scope.page,
+                    pageSize: 2
                 }
             };
 
@@ -43,7 +40,7 @@
                                if (result.data.TotalCount == 0) {
                                    notificationService.displayWarning('There are no records is found!');
                                }
-                               else if (data.params.keyword != '') {
+                               else if (config.params.keyword != '') {
                                    notificationService.displaySuccess('Find '+result.data.TotalCount+ 'records!');
                                }
 
@@ -58,8 +55,6 @@
                                notificationService.displayError('Load products failed!');
                            });
         }
-
-        $scope.getProducts();
 
         function search() {
             getProducts();
@@ -118,7 +113,7 @@
             if ($scope.isAllSelect === false) {
                 angular.forEach($scope.products,
                     function (item) {
-                        item.checked = false;
+                        item.checked = true;
                     }
                 );
                 $scope.isAllSelect = true;
@@ -126,7 +121,7 @@
             else {
                 angular.forEach($scope.products,
                                 function(item){
-                                    item.checked = true;
+                                    item.checked = false;
                                 }
                                );
 
@@ -147,6 +142,7 @@
                           }
                       },
                       true );
-    }
 
+        getProducts();
+    }
 })(angular.module('kaid.products'));

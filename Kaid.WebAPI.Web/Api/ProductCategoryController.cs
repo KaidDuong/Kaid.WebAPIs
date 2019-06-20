@@ -103,6 +103,8 @@ namespace Kaid.WebAPI.Web.Api
                                           {
                                               var model = new ProductCategory();
                                               model.UpdateProductCategory(viewModel);
+                                              model.CreateDate = DateTime.Now;
+                                              model.CreateBy = User.Identity.Name;
 
                                               model = _productCategoryService.Add(model);
                                               _productCategoryService.SaveChanges();

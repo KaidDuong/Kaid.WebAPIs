@@ -7,9 +7,11 @@
     function productCategoryListController($scope, apiService, notificationService, $ngBootbox,$filter) {
 
         $scope.productCategories = [];
+
         $scope.page = 0;
-        //$scope.pagesCount = 0;
+       
         $scope.getProductCategories = getProductCategories;
+
         $scope.keyword = '';
 
         $scope.search = search;
@@ -99,13 +101,13 @@
             getProductCategories()
         };
         
-        function getProductCategories(page) {
-            page = page || 0;
+        function getProductCategories() {
+            
             var config = {
                 params: {
                     keyword: $scope.keyword,
-                    page: page,
-                    pageSize: 2
+                    page: $scope.page,
+                    pageSize: 4
                 }
             }
             apiService.get("/api/productcategory/getall",

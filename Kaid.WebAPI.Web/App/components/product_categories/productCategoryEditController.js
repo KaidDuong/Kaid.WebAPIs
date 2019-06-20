@@ -43,7 +43,7 @@
                     $scope.productCategory = result.data;
                 },
                 function (error) {
-                    notificationService.displayError(error.data);
+                    notificationService.displayError(error.data.Message);
                 }
             );
         }
