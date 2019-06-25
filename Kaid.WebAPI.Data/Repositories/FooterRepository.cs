@@ -3,13 +3,13 @@ using Kaid.WebAPI.Model.Models;
 
 namespace Kaid.WebAPI.Data.Repositories
 {
-    public interface IFooterRepository: IRepository<Footer>
+    public interface IFooterRepository : IRepository<Footer>
     {
     }
 
-    public class Footer : RepositoryBase<Footer>, IFooterRepository
+    public class FooterRepository : RepositoryBase<Footer>, IFooterRepository
     {
-        public Footer(IDbFactory dbFactory) : base(dbFactory)
+        public FooterRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

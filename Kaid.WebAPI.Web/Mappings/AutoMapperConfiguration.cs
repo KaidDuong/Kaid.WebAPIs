@@ -23,6 +23,9 @@ namespace Kaid.WebAPI.Web.Mappings
                 config.CreateMap<Product, ProductViewModel>();
                 config.CreateMap<ProductCategory, ProductCategoryViewModel>();
                 config.CreateMap<ProductTag, ProductTagViewModel>();
+
+                //footer
+                config.CreateMap<Footer, FooterViewModel>();
             });
         }
     }
