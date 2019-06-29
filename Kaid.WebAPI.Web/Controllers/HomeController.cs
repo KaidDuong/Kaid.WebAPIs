@@ -14,16 +14,35 @@ namespace Kaid.WebAPI.Web.Controllers
     {
         private IProductCategoryService _productCategoryService;
         private ICommonService _commonService;
-
-        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService)
+        private IProductService _productService;
+        
+        public HomeController(IProductCategoryService productCategoryService,
+                              ICommonService commonService,
+                              IProductService productService
+                              )
         {
             this._productCategoryService = productCategoryService;
             this._commonService = commonService;
+            this._productService = productService;
         }
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            var slideModels = _commonService.GetSlides();
+            var lastestProductModels = _productService.GetLatestProduct(3);
+            var hotProductModels = _productService.GetTopSaleProduct(3);
+
+            var slideViewModels = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slideModels);
+            var lastestProductViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProductModels);
+            var hotProductViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(hotProductModels);
+
+            var homeViewModel = new HomeViewModel {
+                Slides = slideViewModels,
+                LastestProducts=lastestProductViewModels,
+                TopSaleProducts=hotProductViewModels
+            };
+
+            return View(homeViewModel);
         }
 
         [ChildActionOnly]

@@ -4,16 +4,18 @@
     <div class=" top-nav rsidebar span_1_of_left">
         <h3 class="cate">CATEGORIES</h3>
         <ul class="menu">
+            @{var categoryHasNoChilds = new List<Kaid.WebAPI.Web.Models.ViewModels.ProductCategoryViewModel>();}
+
             @foreach (var category in Model.Where(k => k.ParentID == null))
             {
                 var url = "/" + category.Alias + ".pc-" + category.ID + ".html";
+
                 var childCategories = Model.Where(k => k.ParentID == category.ID);
 
-                <li class="item1">
-                    <a href="@url">@category.Name @((childCategories.Count() > 0) ? Html.Raw("<img class=\"arrow-img\" src=\"../Assets/client/images/arrow1.png\" alt=\"\">"): Html.Raw(" ")) </a>
-
-                    @if (childCategories.Count() > 0)
-                    {
+                if (childCategories.Count() != 0)
+                {
+                    <li class="item1">
+                        <a href="@url">@category.Name <img class="arrow-img" src="~/Assets/client/images/arrow1.png" alt=""> </a>
                         <ul class="cute" style="display: none;">
                             @foreach (var childCategory in childCategories)
                             {
@@ -22,12 +24,32 @@
                                 <li class="subitem1"><a href="@childUrl">@childCategory.Name </a></li>
                             }
                         </ul>
-                    }
-                </li>
+                    </li>
+                }
+                else
+                {
+                    categoryHasNoChilds.Add(category);
+                }
             }
-                 
+            <ul class="kid-menu">
+                @foreach (var category in categoryHasNoChilds)
+                {
+                    var url = "/" + category.Alias + ".pc-" + category.ID + ".html";
+                    <li class="menu-kid"><a href="@url">@category.Name</a></li>
+                }
+                <li class="menu-kid menu-kid-left"><a href="contact.html">Contact us</a></li>
+            </ul>
         </ul>
     </div>
+    <div class=" chain-grid menu-chain">
+        <a href="single.html"><img class="img-responsive chain" src="~/Assets/client/images/wat.jpg" alt=" "></a>
+        <div class="grid-chain-bottom chain-watch">
+            <span class="actual dolor-left-grid">300$</span>
+            <span class="reducedfrom">500$</span>
+            <h6><a href="single.html">Lorem ipsum dolor</a></h6>
+        </div>
+    </div>
+    <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a>
     <!--initiate accordion-->
     <script type="text/javascript">
         $(function () {
@@ -48,13 +70,4 @@
 
         });
     </script>
-    <div class=" chain-grid menu-chain">
-        <a href="single.html"><img class="img-responsive chain" src="~/Assets/client/images/wat.jpg" alt=" "></a>
-        <div class="grid-chain-bottom chain-watch">
-            <span class="actual dolor-left-grid">300$</span>
-            <span class="reducedfrom">500$</span>
-            <h6><a href="single.html">Lorem ipsum dolor</a></h6>
-        </div>
-    </div>
-    <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a>
 </div>

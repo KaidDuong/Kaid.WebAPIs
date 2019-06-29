@@ -26,6 +26,9 @@ namespace Kaid.WebAPI.Web.Mappings
 
                 //footer
                 config.CreateMap<Footer, FooterViewModel>();
+
+                //slide
+                config.CreateMap<Slide, SlideViewModel>();
             });
         }
     }
