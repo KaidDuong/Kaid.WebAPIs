@@ -23,7 +23,7 @@ namespace Kaid.WebAPI.Service
         IEnumerable<Product> GetAllByCategoryId(int parentId);
         IEnumerable<Product> GetLatestProduct(int top);
         IEnumerable<Product> GetTopSaleProduct(int top);
-
+        IEnumerable<Product> GetProductsByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
         Product GetById(int id);
 
         void SaveChanges();
@@ -113,6 +113,16 @@ namespace Kaid.WebAPI.Service
         public IEnumerable<Product> GetLatestProduct(int top)
         {
            return _productRepositories.GetMulti(k => k.Status).OrderByDescending(k => k.CreateDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetProductsByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
+        {
+            var query= _productRepositories.GetMulti(k => k.Status && k.CategoryID == categoryId);
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+
         }
 
         public IEnumerable<Product> GetTopSaleProduct(int top)

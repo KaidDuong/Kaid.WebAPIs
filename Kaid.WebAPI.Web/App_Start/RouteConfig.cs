@@ -12,10 +12,16 @@ namespace Kaid.WebAPI.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
- 
-             /**********
-             * url patern static
-             ***********/
+
+            /**********
+            * url patern static
+            ***********/
+            //Home
+            //routes.MapRoute(
+            //    name: "Index",
+            //    url:"index.html",
+            //    defaults: new {controller="Home", action="Index",id=UrlParameter.Optional}
+            //    );
 
             //Account
             routes.MapRoute(
@@ -64,8 +70,8 @@ namespace Kaid.WebAPI.Web
             //Product
             routes.MapRoute(
                name: "Product Category",
-               url: "{alias}.pc-{productId}.html",
-               defaults: new { controller = "Product", action = "Category", productId = UrlParameter.Optional }
+               url: "{alias}.pc-{categoryId}.html",
+               defaults: new { controller = "Product", action = "Category", categoryId = UrlParameter.Optional }
                );
 
             routes.MapRoute(

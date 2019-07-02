@@ -101,12 +101,12 @@
             getProductCategories()
         };
         
-        function getProductCategories() {
-            
+        function getProductCategories(page) {
+            var page = 0 || page;
             var config = {
                 params: {
                     keyword: $scope.keyword,
-                    page: $scope.page,
+                    page: page,
                     pageSize: 4
                 }
             }

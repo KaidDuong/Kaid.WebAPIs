@@ -25,12 +25,13 @@
 
         $scope.isAllSelect = false;
 
-        function getProducts() {
+        function getProducts(page) {
+            var page = 0 || page;
             var config = {
                 params: {
                     keyword: $scope.keyword,
-                    page: $scope.page,
-                    pageSize: 2
+                    page: page,
+                    pageSize: 4
                 }
             };
 
@@ -46,7 +47,7 @@
 
                                $scope.products = result.data.Items;
                                $scope.page = result.data.Page;
-                               $scope.pageCount = result.data.TotalPages;
+                               $scope.pagesCount = result.data.TotalPages;
                                $scope.totalCount = result.data.TotalCount;
 
                            },
