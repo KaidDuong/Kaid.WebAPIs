@@ -23,7 +23,9 @@ namespace Kaid.WebAPI.Service
         IEnumerable<Product> GetAllByCategoryId(int parentId);
         IEnumerable<Product> GetLatestProduct(int top);
         IEnumerable<Product> GetTopSaleProduct(int top);
-        IEnumerable<Product> GetProductsByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetProductsByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> GetProductsByNamePaging(string keyword, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<string> GetProductsByName(string name);  
         Product GetById(int id);
 
         void SaveChanges();
@@ -115,11 +117,74 @@ namespace Kaid.WebAPI.Service
            return _productRepositories.GetMulti(k => k.Status).OrderByDescending(k => k.CreateDate).Take(top);
         }
 
-        public IEnumerable<Product> GetProductsByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Product> GetProductsByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
         {
             var query= _productRepositories.GetMulti(k => k.Status && k.CategoryID == categoryId);
 
             totalRow = query.Count();
+
+            switch (sort)
+            {
+                case "popular":
+                    {
+                        query.OrderByDescending(k => k.ViewCount);
+                        break;
+                    }
+                case "discount":
+                    {
+                        query.OrderByDescending(k => k.PromotionPrice.HasValue);
+                        break;
+                    }
+                case "price":
+                    {
+                        query.OrderBy(k => k.Price);
+                        break;
+                    }
+                default :
+                    {
+                        query.OrderByDescending(k => k.CreateDate);
+                        break;
+                    }
+            }
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+
+        }
+
+        public IEnumerable<string> GetProductsByName(string name)
+        {
+            return _productRepositories.GetMulti(k => k.Name.Contains(name)).Select(k => k.Name);
+        }
+
+        public IEnumerable<Product> GetProductsByNamePaging(string keyword, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepositories.GetMulti(k => k.Status && k.Name.Contains(keyword));
+
+            totalRow = query.Count();
+
+            switch (sort)
+            {
+                case "popular":
+                    {
+                        query.OrderByDescending(k => k.ViewCount);
+                        break;
+                    }
+                case "discount":
+                    {
+                        query.OrderByDescending(k => k.PromotionPrice.HasValue);
+                        break;
+                    }
+                case "price":
+                    {
+                        query.OrderBy(k => k.Price);
+                        break;
+                    }
+                default:
+                    {
+                        query.OrderByDescending(k => k.CreateDate);
+                        break;
+                    }
+            }
 
             return query.Skip((page - 1) * pageSize).Take(pageSize);
 

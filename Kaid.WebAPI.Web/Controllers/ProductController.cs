@@ -23,12 +23,12 @@ namespace Kaid.WebAPI.Web.Controllers
         }
 
         // GET: Product
-        public ActionResult Category(int categoryId, int page=1)
+        public ActionResult Category(int categoryId, int page=1, string sort="")
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize")); 
             int totalRow = 0;
 
-            var productModels = _productService.GetProductsByCategoryIdPaging(categoryId, page, pageSize, out totalRow);
+            var productModels = _productService.GetProductsByCategoryIdPaging(categoryId, page, pageSize,sort, out totalRow);
             var productViewModels = AutoMapper.Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModels);
 
             int totalPages =(int)Math.Ceiling((double)totalRow / pageSize);
@@ -50,9 +50,42 @@ namespace Kaid.WebAPI.Web.Controllers
 
         }
 
+        public ActionResult Search(string keyword, int page = 1, string sort = "")
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            int totalRow = 0;
+
+            var productModels = _productService.GetProductsByNamePaging(keyword, page, pageSize, sort, out totalRow);
+            var productViewModels = AutoMapper.Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModels);
+
+            int totalPages = (int)Math.Ceiling((double)totalRow / pageSize);
+
+            var paginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productViewModels,
+                MaxPage = int.Parse(ConfigHelper.GetByKey("MaxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPages
+            };
+
+            
+            ViewBag.Keyword = keyword;
+
+            return View(paginationSet);
+
+        }
+
         public ActionResult Detail(int productId)
         {
             return View();
+        }
+        public JsonResult GetProductsByName(string keyword)
+        {
+           var responseData= _productService.GetProductsByName(keyword);
+            return Json(new {
+                data = responseData
+            },JsonRequestBehavior.AllowGet);
         }
     }
 }

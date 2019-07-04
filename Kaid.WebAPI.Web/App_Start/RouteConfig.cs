@@ -17,11 +17,11 @@ namespace Kaid.WebAPI.Web
             * url patern static
             ***********/
             //Home
-            //routes.MapRoute(
-            //    name: "Index",
-            //    url:"index.html",
-            //    defaults: new {controller="Home", action="Index",id=UrlParameter.Optional}
-            //    );
+            routes.MapRoute(
+                name: "Index",
+                url: "index.html",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                );
 
             //Account
             routes.MapRoute(
@@ -55,6 +55,14 @@ namespace Kaid.WebAPI.Web
                 name: "Contact",
                 url: "contact.html",
                 defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional }
+                );
+
+            //Product
+            routes.MapRoute(
+                name: "Search",
+                url: "search.html",
+                defaults: new {controller="Product", action= "Search", id=UrlParameter.Optional},
+                namespaces: new string[] { "Kaid.WebAPI.Web.Controllers" }
                 );
 
             /*****************
