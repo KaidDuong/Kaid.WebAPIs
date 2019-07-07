@@ -99,6 +99,7 @@ namespace Kaid.WebAPI.Web.Infrastructure.Extentions
             model.HotFlag = viewModel.HotFlag;
             model.ViewCount = viewModel.ViewCount;
             model.Tags = viewModel.Tags;
+            model.Quanlity = viewModel.Quanlity;
         }
     }
 }

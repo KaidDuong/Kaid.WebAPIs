@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace Kaid.WebAPI.Web.Controllers
 {
@@ -78,7 +79,18 @@ namespace Kaid.WebAPI.Web.Controllers
 
         public ActionResult Detail(int productId)
         {
-            return View();
+            var model = _productService.GetById(productId);
+            var viewModel = AutoMapper.Mapper.Map<Product, ProductViewModel>(model);
+
+            var numberOfRelatedProducts = Convert.ToInt32(ConfigHelper.GetByKey("NumberOfRelatedProducts"));
+
+            var relatedProducts = _productService.GetRelatedProducts(productId, numberOfRelatedProducts);
+            ViewBag.RelatedProducts = AutoMapper.Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProducts);
+
+            var moreImages = new JavaScriptSerializer().Deserialize<List<String>>(model.MoreImages);
+            ViewBag.MoreImages = moreImages;
+
+            return View(viewModel);
         }
         public JsonResult GetProductsByName(string keyword)
         {

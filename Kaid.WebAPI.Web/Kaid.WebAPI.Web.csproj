@@ -6099,11 +6099,12 @@
     <Content Include="Views\Shared\Layouts.cshtml" />
     <Content Include="Resource\bigshope-web\web\images\Thumbs.db" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Header.cshtml" />
-    <Content Include="Views\Home\Footer.cshtml" />
-    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\Category.cshtml" />
     <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kaid.WebAPI.Common\Kaid.WebAPI.Common.csproj">

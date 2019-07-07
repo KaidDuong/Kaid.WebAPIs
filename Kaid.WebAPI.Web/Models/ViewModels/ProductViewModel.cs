@@ -17,6 +17,8 @@ namespace Kaid.WebAPI.Web.Models.ViewModels
         public int? ViewCount { set; get; }
 
         public string Tags { set; get; }
+
+        public int Quanlity { set; get; }
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
         public virtual IEnumerable<ProductTagViewModel> ProductTags { set; get; }
 

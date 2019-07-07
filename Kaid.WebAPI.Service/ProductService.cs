@@ -27,8 +27,10 @@ namespace Kaid.WebAPI.Service
         IEnumerable<Product> GetProductsByNamePaging(string keyword, int page, int pageSize, string sort, out int totalRow);
         IEnumerable<string> GetProductsByName(string name);  
         Product GetById(int id);
+        IEnumerable<Product> GetRelatedProducts(int id, int numberOfRelatedProducts);
 
         void SaveChanges();
+        
     }
     public class ProductService : IProductService
     {
@@ -188,6 +190,17 @@ namespace Kaid.WebAPI.Service
 
             return query.Skip((page - 1) * pageSize).Take(pageSize);
 
+        }
+
+        public IEnumerable<Product> GetRelatedProducts(int id, int numberOfRelatedProducts)
+        {
+            var categoriId = _productRepositories.GetSingleById(id).CategoryID;
+
+            return 
+                _productRepositories
+                .GetMulti(k => k.Status && k.ID != id && k.CategoryID == categoriId)
+                .OrderByDescending(k => k.CreateDate)
+                .Take(numberOfRelatedProducts);
         }
 
         public IEnumerable<Product> GetTopSaleProduct(int top)
