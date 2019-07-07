@@ -77,15 +77,20 @@ namespace Kaid.WebAPI.Web
 
             //Product
             routes.MapRoute(
-               name: "Product Category",
+               name: "Products From Category",
                url: "{alias}.pc-{categoryId}.html",
                defaults: new { controller = "Product", action = "Category", categoryId = UrlParameter.Optional }
                );
 
             routes.MapRoute(
-                name: "Product",
+                name: "Product Detail",
                 url: "{alias}.p-{productId}.html",
                 defaults: new { controller = "Product", action = "Detail", productId = UrlParameter.Optional }
+                );
+            routes.MapRoute(
+                name: "Products From Tags",
+                url: "tag/{tagId}.html",
+                defaults: new { controller = "Product", action = "ProductsFromTag", tagId = UrlParameter.Optional }
                 );
 
 

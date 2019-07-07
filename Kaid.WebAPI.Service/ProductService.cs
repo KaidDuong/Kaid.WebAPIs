@@ -28,7 +28,10 @@ namespace Kaid.WebAPI.Service
         IEnumerable<string> GetProductsByName(string name);  
         Product GetById(int id);
         IEnumerable<Product> GetRelatedProducts(int id, int numberOfRelatedProducts);
-
+        IEnumerable<Tag> GetTagsBy(int id);
+        IEnumerable<Product> GetProductsByTagIdPaging(string tagId, int page, int pageSize, out int totalRow);
+        void IncreaseView(int id);
+        Tag GetTag(string tagId);
         void SaveChanges();
         
     }
@@ -192,6 +195,11 @@ namespace Kaid.WebAPI.Service
 
         }
 
+        public IEnumerable<Tag> GetTagsBy(int id)
+        {
+            return _productTagRepository.GetMulti(k=>k.ProductID==id,new string[] { "Tag"}).Select(x=>x.Tag);
+        }
+
         public IEnumerable<Product> GetRelatedProducts(int id, int numberOfRelatedProducts)
         {
             var categoriId = _productRepositories.GetSingleById(id).CategoryID;
@@ -246,6 +254,37 @@ namespace Kaid.WebAPI.Service
                 }
 
             }
+        }
+
+        public IEnumerable<Product> GetProductsByTagIdPaging(string tagId, int page, int pageSize, out int totalRow)
+        {
+            var model = _productRepositories.GetProductsFromTag(tagId);
+
+            totalRow = model.Count();
+
+            return model.OrderByDescending(k => k.CreateDate).Skip((page - 1) * pageSize).Take(pageSize);
+
+        }
+
+        public void IncreaseView(int id)
+        {
+            var model = _productRepositories.GetSingleById(id);
+
+            if (model.ViewCount.HasValue)
+            {
+                model.ViewCount++;
+            }
+            else
+            {
+                model.ViewCount = 1;
+            }
+            _productRepositories.Update(model);
+            _unitOfWork.Commit();
+        }
+
+        public Tag GetTag(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(k => k.ID == tagId);
         }
     }
 }

@@ -79,6 +79,8 @@ namespace Kaid.WebAPI.Web.Controllers
 
         public ActionResult Detail(int productId)
         {
+            _productService.IncreaseView(productId);
+
             var model = _productService.GetById(productId);
             var viewModel = AutoMapper.Mapper.Map<Product, ProductViewModel>(model);
 
@@ -90,7 +92,35 @@ namespace Kaid.WebAPI.Web.Controllers
             var moreImages = new JavaScriptSerializer().Deserialize<List<String>>(model.MoreImages);
             ViewBag.MoreImages = moreImages;
 
+            var tags = _productService.GetTagsBy(productId);
+            ViewBag.Tags = AutoMapper.Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tags);
+
             return View(viewModel);
+        }
+        
+        public ActionResult ProductsFromTag(string tagId, int page = 1)
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            int totalRow = 0;
+
+            var productModels = _productService.GetProductsByTagIdPaging(tagId, page, pageSize, out totalRow);
+            var productViewModels = AutoMapper.Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModels);
+
+            int totalPages = (int)Math.Ceiling((double)totalRow / pageSize);
+
+            var paginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productViewModels,
+                MaxPage = int.Parse(ConfigHelper.GetByKey("MaxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPages
+            };
+
+            var tag = _productService.GetTag(tagId);
+            ViewBag.Tag = AutoMapper.Mapper.Map<Tag, TagViewModel>(tag);
+
+            return View(paginationSet);
         }
         public JsonResult GetProductsByName(string keyword)
         {

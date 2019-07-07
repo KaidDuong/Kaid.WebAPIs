@@ -7,6 +7,7 @@
 
     var moreImages = ViewBag.MoreImages as List<String>;
     var relatedProducts = ViewBag.RelatedProducts as IEnumerable<ProductViewModel>;
+    var tags = ViewBag.Tags as IEnumerable<TagViewModel>;
 }
 
 <div class=" single_top">
@@ -34,9 +35,17 @@
                 <a class="now-get get-cart-in" href="#">ADD TO CART</a>
                 <div class="clearfix"></div>
             </div>
-            <h6>@Model.Quanlity items in stock</h6>
-            <p> @Html.Raw(Model.Content) </p>
+            <h6>Had @Model.Quanlity items in stock</h6>
+            <p> @Model.Description </p>
             <div class="share">
+                <h5>Tags Product :</h5>
+                <ul class="list-inline sub-left-right">
+                    @foreach (var tag in tags)
+                    {
+                        <li><a href="/tag/@(tag.ID).html"> @tag.Name</a></li>
+                    }
+                </ul>
+                <div class="clearfix"></div>
                 <h5>Share Product :</h5>
                 <ul class="share_nav">
                     <li><a href="#"><img src="~/Assets/client/images/facebook.png" title="facebook"></a></li>
@@ -64,7 +73,7 @@
 
     <div class="toogle">
         <h3 class="m_3">Product Details</h3>
-        <p class="m_text">@Model.Description</p>
+        <p class="m_text">@Html.Raw(Model.Content)</p>
     </div>
 </div>
 
