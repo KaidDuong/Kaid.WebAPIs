@@ -208,6 +208,7 @@
     <Compile Include="Models\Abstract\ISeoable.cs" />
     <Compile Include="Models\Abstract\ISwitchable.cs" />
     <Compile Include="Models\ViewModels\ApplicationUserViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\FooterViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
     <Compile Include="Models\ViewModels\PostCategoryViewModel.cs" />
@@ -4807,6 +4808,7 @@
     <Content Include="Assets\client\images\wat.jpg" />
     <Content Include="Assets\client\images\zoom.png" />
     <Content Include="Assets\client\js\common.js" />
+    <Content Include="Assets\client\js\contactMapGoogle.js" />
     <Content Include="Assets\client\js\jquery.etalage.min.js" />
     <Content Include="Assets\client\js\jquery.flexisel.js" />
     <Content Include="Assets\client\js\jquery.min.js" />
@@ -5722,6 +5724,12 @@
     <Content Include="Resource\bigshope-web\web\register.html" />
     <Content Include="Resource\bigshope-web\web\single.html" />
     <Content Include="Resource\bigshope-web\web\w3layouts-license.txt" />
+    <Content Include="UploadedFiles\images\1.jpg" />
+    <Content Include="UploadedFiles\images\a.jpg" />
+    <Content Include="UploadedFiles\images\lichthi.PNG" />
+    <Content Include="UploadedFiles\_thumbs\Images\1.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\a.jpg" />
+    <Content Include="UploadedFiles\_thumbs\Images\lichthi.PNG" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -5737,10 +5745,9 @@
     <Folder Include="App\components\users\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
-    <Folder Include="UploadedFiles\" />
+    <Folder Include="UploadedFiles\files\" />
     <Folder Include="Views\About\" />
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -6106,6 +6113,7 @@
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\ProductsFromTag.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kaid.WebAPI.Common\Kaid.WebAPI.Common.csproj">

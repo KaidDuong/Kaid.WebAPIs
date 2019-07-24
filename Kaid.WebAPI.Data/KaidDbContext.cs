@@ -32,7 +32,7 @@ namespace Kaid.WebAPI.Data
         public DbSet<VisitorStatisic> VisitorStatisics { set; get; }
         public DbSet<Error> Errors { get; set; }
         
-
+        public DbSet<ContactDetail> ContactDetails { set; get; }
         public static KaidDbContext Create()
         {
             return new KaidDbContext();

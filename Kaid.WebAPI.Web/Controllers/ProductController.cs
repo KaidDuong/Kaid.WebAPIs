@@ -5,8 +5,6 @@ using Kaid.WebAPI.Web.Infrastructure.Core;
 using Kaid.WebAPI.Web.Models.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -24,31 +22,30 @@ namespace Kaid.WebAPI.Web.Controllers
         }
 
         // GET: Product
-        public ActionResult Category(int categoryId, int page=1, string sort="")
+        public ActionResult Category(int categoryId, int page = 1, string sort = "")
         {
-            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize")); 
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
             int totalRow = 0;
 
-            var productModels = _productService.GetProductsByCategoryIdPaging(categoryId, page, pageSize,sort, out totalRow);
+            var productModels = _productService.GetProductsByCategoryIdPaging(categoryId, page, pageSize, sort, out totalRow);
             var productViewModels = AutoMapper.Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModels);
 
-            int totalPages =(int)Math.Ceiling((double)totalRow / pageSize);
+            int totalPages = (int)Math.Ceiling((double)totalRow / pageSize);
 
             var paginationSet = new PaginationSet<ProductViewModel>()
             {
                 Items = productViewModels,
-                MaxPage= int.Parse(ConfigHelper.GetByKey("MaxPage")),
-                Page=page,
-                TotalCount=totalRow,
-                TotalPages= totalPages
-        };
+                MaxPage = int.Parse(ConfigHelper.GetByKey("MaxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPages
+            };
 
             var categoryModel = _productCategoryService.GetById(categoryId);
             var categoryViewModel = AutoMapper.Mapper.Map<ProductCategory, ProductCategoryViewModel>(categoryModel);
             ViewBag.Category = categoryViewModel;
 
             return View(paginationSet);
-
         }
 
         public ActionResult Search(string keyword, int page = 1, string sort = "")
@@ -70,11 +67,9 @@ namespace Kaid.WebAPI.Web.Controllers
                 TotalPages = totalPages
             };
 
-            
             ViewBag.Keyword = keyword;
 
             return View(paginationSet);
-
         }
 
         public ActionResult Detail(int productId)
@@ -97,7 +92,7 @@ namespace Kaid.WebAPI.Web.Controllers
 
             return View(viewModel);
         }
-        
+
         public ActionResult ProductsFromTag(string tagId, int page = 1)
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
@@ -122,12 +117,14 @@ namespace Kaid.WebAPI.Web.Controllers
 
             return View(paginationSet);
         }
+
         public JsonResult GetProductsByName(string keyword)
         {
-           var responseData= _productService.GetProductsByName(keyword);
-            return Json(new {
+            var responseData = _productService.GetProductsByName(keyword);
+            return Json(new
+            {
                 data = responseData
-            },JsonRequestBehavior.AllowGet);
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

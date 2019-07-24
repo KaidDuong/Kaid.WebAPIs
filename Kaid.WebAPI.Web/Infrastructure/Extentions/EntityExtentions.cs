@@ -101,5 +101,18 @@ namespace Kaid.WebAPI.Web.Infrastructure.Extentions
             model.Tags = viewModel.Tags;
             model.Quanlity = viewModel.Quanlity;
         }
+
+        public static void UpdateContactDetail(this ContactDetail model,ContactDetailViewModel viewModel)
+        {
+            model.Name = viewModel.Name;
+            model.Phone = viewModel.Phone;
+            model.Website = viewModel.Website;
+            model.Address = viewModel.Address;
+            model.Email = viewModel.Email;
+            model.Lat = viewModel.Lat;
+            model.Lng = viewModel.Lgn;
+            model.Other = viewModel.Other;
+            model.Status = viewModel.Status;
+        }
     }
 }

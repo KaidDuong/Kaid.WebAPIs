@@ -24,6 +24,7 @@
             //  to avoid creating duplicate seed data.
             CreateProductCategorySample(context);
             CreateSlide(context);
+            CreateContactDetailSample(context);
         }
 
         private void CreateUser(KaidDbContext dbContext)
@@ -134,6 +135,27 @@
                 dbContext.Slides.AddRange(slides);
                 dbContext.SaveChanges();
             } 
+        }
+
+        private void CreateContactDetailSample(KaidDbContext dbContext)
+        {
+            if (dbContext.ContactDetails.Count() == 0)
+            {
+                var contactDetail = new ContactDetail()
+                {
+                    Name = "Kaid",
+                    Website= "http://KaidShop.html",
+                    Address="54 - Nguyen Luong Bang",
+                    Email="Kaid@gmail.com",
+                    Lat= 16.0748869,
+                    Lng= 108.1500137,
+                    Status=true,
+                    Other="",
+                    Phone="0374894176"
+                };
+                dbContext.ContactDetails.Add(contactDetail);
+                dbContext.SaveChanges();
+            }
         }
     }
 }

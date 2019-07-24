@@ -29,6 +29,9 @@ namespace Kaid.WebAPI.Web.Mappings
 
                 //slide
                 config.CreateMap<Slide, SlideViewModel>();
+
+                //contact detail
+                config.CreateMap<ContactDetail, ContactDetailViewModel>();
             });
         }
     }
